@@ -9,7 +9,7 @@ await conn.sendFile(m.chat, json.getRandom(), 'lp.jpg', `✨ *Resultados de:* ${
 await conn.reply(m.chat, `${lenguajeGB['smsMalError3']()}#report ${lenguajeGB['smsMensError2']()} ${usedPrefix + command}\n\n${wm}`, m)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)
-handler.money = false
+
 }}
 handler.help = ['pinterest <keyword>']
 handler.tags = ['internet']
