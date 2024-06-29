@@ -28,7 +28,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     }));
 
     const listMessage = {
-        text: `🔎 𝘽𝙪𝙨𝙦𝙪𝙚𝙙𝙖 𝙙𝙚: ${text}`,
+        text: `🔎 Resultados: ${text}`,
         footer: wm,
         title: 'Resultados de búsqueda',
         buttonText: 'Ver resultados',
