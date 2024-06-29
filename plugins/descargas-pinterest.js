@@ -4,7 +4,7 @@ if (!text) return conn.reply(m.chat, `*⚠️ 𝙌𝙪𝙚 𝙚𝙨𝙩𝙖 𝙗
 try {
 const json = await pinterest(text)
 await conn.sendFile(m.chat, json.getRandom(), 'lp.jpg', `✨ *Resultados de:* ${text}`, m, false, { contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: text, body: wm, previewType: 0, thumbnail: img.getRandom(), sourceUrl: redes.getRandom()}}})
-handler.money = 100
+
 } catch (e) {
 await conn.reply(m.chat, `${lenguajeGB['smsMalError3']()}#report ${lenguajeGB['smsMensError2']()} ${usedPrefix + command}\n\n${wm}`, m)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
