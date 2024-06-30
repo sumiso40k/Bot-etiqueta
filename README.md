@@ -1,11 +1,11 @@
-> <b>🚀 Versión actual: 1.6.5</b>
+> <b>🚀 Versión actual: 1.0.0</b>
  
 <p align="center"> 
 <a href="https://github.com/elrebelde21"><img src="http://readme-typing-svg.herokuapp.com?font=mono&size=17&duration=4000&color=F7B11B&center=falso&vCenter=falso&lines=The-LoliBot-MD++%F0%9F%90%88;Gracias+por+visitar+este+repositorio.+%F0%9F%92%96" height="90px"></a> 
 </p>
 
 <p align="center">
-<img src="https://telegra.ph/file/9854a169d0eaea13083c7.jpg" alt="LoliBot-MD" width="900"/>
+<img src="https://i.ibb.co/5rBxtN6/90f41211b7b74724911dfaceedc984bc.jpg" alt="Airi-Bot" width="900"/>
 </p>
 
 <p align="center">
