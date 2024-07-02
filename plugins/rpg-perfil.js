@@ -5,12 +5,11 @@ let handler = async (m, { conn, usedPrefix }) => {
     let user = global.db.data.users[m.sender]
     let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 
-    
-        let { name, money, registered, age } = global.db.data.users[who] || {}
-        let username = conn.getName(who)
-        let prem = global.prems.includes(who.split`@`[0])
+    let { name, money, registered, age } = global.db.data.users[who] || {}
+    let username = conn.getName(who)
+    let prem = global.prems.includes(who.split`@`[0])
 
-        let str = `
+    let str = `
 ╭━〔 👤 *PERFIL* 〕━⬣
 ┃ 𝙉𝙊𝙈𝘽𝙍𝙀 *:* ${username} ${user.registered ? '✓' : ''}
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
@@ -26,10 +25,10 @@ let handler = async (m, { conn, usedPrefix }) => {
 ╰━━━━〔 ${wm} 〕━━━⬣
 `.trim()
 
-        conn.sendButton(m.chat, str, null, null, [
-            ['Minar Monedas', '#minarcoins'],
-            ['Menú', '#menu']
-        ], m)
+    conn.sendMessage(m.chat, { text: str, buttons: [
+        { buttonId: '#minarcoins', buttonText: { displayText: 'Minar Monedas' }, type: 1 },
+        { buttonId: '#menu', buttonText: { displayText: 'Menú' }, type: 1 }
+    ] }, { quoted: m })
 }
 
 handler.help = ['profile [@user]']
