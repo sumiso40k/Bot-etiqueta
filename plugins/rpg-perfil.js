@@ -5,11 +5,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let user = global.db.data.users[m.sender]
     let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 
-    try {
-        // const pp = await conn.getProfilePicture(who)  // Si se necesita la foto de perfil, descomentar esta línea
-    } catch (e) {
-        console.error(e)
-    } finally {
+    
         let { name, money, registered, age } = global.db.data.users[who] || {}
         let username = conn.getName(who)
         let prem = global.prems.includes(who.split`@`[0])
@@ -34,7 +30,6 @@ let handler = async (m, { conn, usedPrefix }) => {
             ['Minar Monedas', '#minarcoins'],
             ['Menú', '#menu']
         ], m)
-    }
 }
 
 handler.help = ['profile [@user]']
