@@ -26,10 +26,12 @@ let handler = async (m, { conn, usedPrefix }) => {
 ╰━━━━〔 Airi 〕━━━⬣
 `.trim();
 
-    await conn.sendButton(m.chat, str, null, [
-        ['Minar Monedas', '#minarcoins'],
-        ['Menú', '#menu']
-    ], m);
+    let buttons = [
+        { buttonId: '#minarcoins', buttonText: { displayText: 'Minar Monedas' }, type: 1 },
+        { buttonId: '#menu', buttonText: { displayText: 'Menú' }, type: 1 }
+    ];
+
+    await conn.sendButton(m.chat, str, '', null, buttons, m);
 };
 
 handler.help = ['profile'];
