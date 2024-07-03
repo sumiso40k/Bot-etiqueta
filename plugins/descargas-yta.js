@@ -5,9 +5,9 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
         return conn.reply(m.chat, `_*[ ⚠️ ] Agrega un enlace de Youtube *_\n\n> Ejemplo:\n_.ytmp3 https://youtu.be/_`, m);
     }
 
-    try {
-        await conn.reply(m.chat, `_*[ ⏳ ] Descargando el audio...*_`, m);
+await conn.reply(m.chat, `_*[ ⏳ ] Descargando el audio...*_`, m);
 
+    try {
         const apiUrl = `https://delirios-api-delta.vercel.app/download/ytmp3?url=${encodeURIComponent(args[0])}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -20,8 +20,12 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
             throw new Error('_*[ ❌ ] Ocurrió un error al descargar el audio*_');
         }
     } catch (e1) {
+        console.error(e1);
         try {
-            
+            let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${encodeURIComponent(args[0])}`);  
+let lolh = await lolhuman.json();
+let n = lolh.result.title || 'error';
+await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m });
         } catch (e2) {
             console.error(e2);
             await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el audio, inténtalo más tarde*_`, m);
