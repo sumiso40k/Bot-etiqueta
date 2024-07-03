@@ -19,9 +19,13 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
         } else {
             throw new Error('_*[ ❌ ] Ocurrió un error al descargar el audio*_');
         }
-    } catch (err) {
-        console.error(err);
-        await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el audio, inténtalo más tarde*_`, m);
+    } catch (e1) {
+        try {
+            
+        } catch (e2) {
+            console.error(e2);
+            await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el audio, inténtalo más tarde*_`, m);
+        }
     }
 };
 
