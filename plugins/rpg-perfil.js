@@ -1,16 +1,16 @@
-import PhoneNumber from 'awesome-phonenumber'
-import fetch from 'node-fetch'
+import PhoneNumber from 'awesome-phonenumber';
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, usedPrefix }) => {
-    let user = global.db.data.users[m.sender]
-    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+    let user = global.db.data.users[m.sender];
+    let who = m.mentionedJid && m.mentionedJid.length > 0 ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
 
+    
+    let { name, money, registered, age } = global.db.data.users[who] || {};
+    let username = conn.getName(who);
+    let prem = global.prems.includes(who.split`@`[0]);
 
-        let { name, money, registered, age } = global.db.data.users[who] || {}
-        let username = conn.getName(who)
-        let prem = global.prems.includes(who.split`@`[0])
-
-        let str = `
+    let str = `
 ╭━〔 👤 *PERFIL* 〕━⬣
 ┃ 𝙉𝙊𝙈𝘽𝙍𝙀 *:* ${username} ${user.registered ? '✓' : ''}
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
@@ -24,16 +24,16 @@ let handler = async (m, { conn, usedPrefix }) => {
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ┃ 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 *:* ${prem ? '✅' : '❎'}
 ╰━━━━〔 Airi 〕━━━⬣
-`.trim()
+`.trim();
 
-        conn.sendButton(m.chat, null, str, [
-            ['Minar Monedas', '#minarcoins'],
-            ['Menú', '#menu']
-        ], null, null, m)
-    
-}
+    await conn.sendButton(m.chat, str, null, [
+        ['Minar Monedas', '#minarcoins'],
+        ['Menú', '#menu']
+    ], m);
+};
 
-handler.help = ['profile']
-handler.tags = ['xp']
-handler.command = /^perfil|profile?$/i
-export default handler
+handler.help = ['profile'];
+handler.tags = ['xp'];
+handler.command = /^perfil|profile?$/i;
+
+export default handler;
