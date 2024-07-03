@@ -5,7 +5,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let user = global.db.data.users[m.sender]
     let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 
-    
+
         let { name, money, registered, age } = global.db.data.users[who] || {}
         let username = conn.getName(who)
         let prem = global.prems.includes(who.split`@`[0])
@@ -23,16 +23,17 @@ let handler = async (m, { conn, usedPrefix }) => {
 ┃ 𝙍𝙀𝙂𝙄𝙎𝙏𝙍𝘼𝘿𝙊(𝘼) *:* ${registered ? '✅' : '❎'}
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ┃ 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 *:* ${prem ? '✅' : '❎'}
-╰━━━━〔 ${wm} 〕━━━⬣
+╰━━━━〔 Airi 〕━━━⬣
 `.trim()
 
-        conn.sendButton(m.chat, str, null, null, [
+        conn.sendButton(m.chat, null, str, [
             ['Minar Monedas', '#minarcoins'],
             ['Menú', '#menu']
-        ], m)
+        ], null, null, m)
+    
 }
 
-handler.help = ['profile [@user]']
+handler.help = ['profile']
 handler.tags = ['xp']
 handler.command = /^perfil|profile?$/i
 export default handler
