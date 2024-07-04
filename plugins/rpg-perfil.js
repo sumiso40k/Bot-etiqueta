@@ -2,7 +2,7 @@ import { createHash } from 'crypto'
 import PhoneNumber from 'awesome-phonenumber'
 import fetch from 'node-fetch'
 let handler = async (m, { conn, usedPrefix }) => {
-let pp = './src/img/default_avatar.jpg'
+let pp = 'https://raw.githubusercontent.com/Rudyrex/Airi-Bot/main/src/img/default_avatar.jpg'
 //const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/avatar_contact.png')
 let user = global.db.data.users[m.sender]
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
