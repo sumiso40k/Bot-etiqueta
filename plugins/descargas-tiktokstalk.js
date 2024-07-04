@@ -40,6 +40,5 @@ handler.limit = false
 handler.help = ['tiktokstalk'].map(v => v + ' <username>')
 handler.tags = ['stalk']
 handler.command = /^(tiktokstalk|ttstalk)$/i
-//handler.limit = 1
-handler.register = true
+
 export default handler
