@@ -3,57 +3,49 @@ import fetch from 'node-fetch'
 import yts from 'yt-search'
 import ytdl from 'ytdl-core'
 import axios from 'axios'
+
+
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-if (!args[0]) return await conn.reply(m.chat,  '🤔 *𝙔 𝙚𝙡 𝙇𝙞𝙣𝙠?*\n𝙄𝙣𝙜𝙧𝙚𝙨𝙚 𝙚𝙡 𝙚𝙣𝙡𝙖𝙘𝙚 𝙙𝙚 𝙔𝙤𝙪𝙏𝙪𝙗𝙚 𝙥𝙖𝙧𝙖 𝙙𝙚𝙨𝙘𝙖𝙧𝙜𝙖𝙧 𝙚𝙡 𝙫𝙞𝙙𝙚𝙤', fkontak, {contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: mg, body: '𝐒𝐮𝐩𝐞𝐫 𝐁𝐨𝐭 𝐃𝐞 𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩', previewType: 0, thumbnail: imagen4, sourceUrl: redes.getRandom()}}})
+
+if (!args[0]) return await conn.reply(m.chat,  `_*[ ⚠️ ] Agrega un enlace de YouTube*_\n\n> Ejemplo:\n_.${command} https://www.youtube.com/_`, m)
   
 let youtubeLink = '';
 if (args[0].includes('you')) {
-youtubeLink = args[0];
+    youtubeLink = args[0];
 } else {
-const index = parseInt(args[0]) - 1;
-if (index >= 0) {
-if (Array.isArray(global.videoList) && global.videoList.length > 0) {
-const matchingItem = global.videoList.find(item => item.from === m.sender);
-if (matchingItem) {
-if (index < matchingItem.urls.length) {
-youtubeLink = matchingItem.urls[index];
-} else {
-return await conn.reply(m.chat,   `${lenguajeGB['smsAvisoFG']()} 𝙉𝙤 𝙨𝙚 𝙚𝙣𝙘𝙤𝙣𝙩𝙧𝙤 𝙪𝙣 𝙚𝙣𝙡𝙖𝙘𝙚𝙨 𝙥𝙖𝙧𝙖 𝙚𝙨𝙚 𝙣𝙪𝙢𝙚𝙧𝙤, 𝙥𝙤𝙧 𝙛𝙖𝙫𝙤𝙧 𝙞𝙣𝙜𝙧𝙚𝙨𝙚 𝙚𝙡 𝙣𝙪𝙢𝙚𝙧𝙤 𝙚𝙣𝙩𝙧𝙚 1 𝙮 𝙚𝙡 ${matchingItem.urls.length}*`, fkontak, {contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: fg, body: ' 💫 𝐒𝐮𝐩𝐞𝐫 𝐁𝐨𝐭 𝐃𝐞 𝐖𝐡𝐚𝐭𝐬𝐚𝐩𝐩 🥳 ', previewType: 0, thumbnail: img.getRandom(), sourceUrl: redes.getRandom()}}})   
-}} else {
-return await conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()} 𝙋𝙖𝙧𝙖 𝙥𝙤𝙙𝙚𝙧 𝙪𝙨𝙖𝙧 𝙚𝙨𝙩𝙚 𝙘𝙤𝙢𝙖𝙣𝙙𝙤 𝙙𝙚 𝙚𝙨𝙩𝙖 𝙛𝙤𝙧𝙢𝙖 (${usedPrefix + command} <numero>), 𝙋𝙤𝙧 𝙛𝙖𝙫𝙤𝙧 𝙧𝙚𝙖𝙡𝙞𝙯𝙖𝙧 𝙡𝙖 𝙗𝙪𝙨𝙦𝙪𝙚𝙙𝙖 𝙙𝙚 𝙫𝙞𝙙𝙚𝙤𝙨 𝙘𝙤𝙣 𝙚𝙡 𝙘𝙤𝙢𝙖𝙣𝙙𝙤 ${usedPrefix}playlist <texto>*`, fkontak, {contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: mg, body: ' 💫 𝐒𝐮𝐩𝐞𝐫 𝐁𝐨𝐭 𝐃𝐞 𝐖𝐡𝐚𝐭𝐬𝐚𝐩𝐩 🥳 ', previewType: 0, thumbnail: img.getRandom(), sourceUrl: redes.getRandom()}}})   
-}} else {
-return await conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()} 𝙋𝙖𝙧𝙖 𝙥𝙤𝙙𝙚𝙧 𝙪𝙨𝙖𝙧 𝙚𝙨𝙩𝙚 𝙘𝙤𝙢𝙖𝙣𝙙𝙤 𝙙𝙚 𝙚𝙨𝙩𝙖 𝙛𝙤𝙧𝙢𝙖 (${usedPrefix + command} <numero>), 𝙋𝙤𝙧 𝙛𝙖𝙫𝙤𝙧 𝙧𝙚𝙖𝙡𝙞𝙯𝙖𝙧 𝙡𝙖 𝙗𝙪𝙨𝙦𝙪𝙚𝙙𝙖 𝙙𝙚 𝙫𝙞𝙙𝙚𝙤𝙨 𝙘𝙤𝙣 𝙚𝙡 𝙘𝙤𝙢𝙖𝙣𝙙𝙤 ${usedPrefix}playlist <texto>*`, fkontak, {contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: mg, body: ' 💫 𝐒𝐮𝐩𝐞𝐫 𝐁𝐨𝐭 𝐃𝐞 𝐖𝐡𝐚𝐭𝐬𝐚𝐩𝐩 🥳 ', previewType: 0, thumbnail: img.getRandom(), sourceUrl: redes.getRandom()}}})   
-}}}  
-conn.reply(m.chat, [`*⌛ 𝙀𝙨𝙥𝙚𝙧𝙚 ✋ 𝙪𝙣 𝙢𝙤𝙢𝙚𝙣𝙩𝙤... 𝙔𝙖 𝙚𝙨𝙩𝙤𝙮 𝙙𝙚𝙨𝙘𝙖𝙧𝙜𝙖𝙙𝙤 𝙩𝙪 𝙑𝙞𝙙𝙚𝙤 🍹*`, `⌛ 𝙋𝙍𝙊𝘾𝙀𝙎𝘼𝙉𝘿𝙊...\n*𝘌𝘴𝘵𝘰𝘺 𝘪𝘯𝘵𝘦𝘯𝘵𝘢𝘯𝘥𝘰 𝘥𝘦𝘴𝘤𝘢𝘳𝘨𝘢 𝘴𝘶𝘴 𝘝𝘪𝘥𝘦𝘰 𝘦𝘴𝘱𝘦𝘳𝘦 🏃‍♂️💨*`].getRandom(), m, {contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: wm, body: ' 💫 𝐒𝐮𝐩𝐞𝐫 𝐁𝐨𝐭 𝐃𝐞 𝐖𝐡𝐚𝐭𝐬𝐚𝐩𝐩 🥳 ', previewType: 0, thumbnail: img.getRandom(), sourceUrl: redes.getRandom()}}})    
+    return await conn.reply(m.chat, '_*[ ⚠️ ] El enlace no es de YouTube*_', m)
+}
+
+conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m)
 try {
-let qu = args[1] || '360'
-let q = qu + 'p'
-let v = youtubeLink
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.video[q].download()
-const ttl = await yt.title
-const size = await yt.video[q].fileSizeH
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `🔰 𝘼𝙦𝙪𝙞 𝙚𝙨𝙩𝙖 𝙩𝙪 𝙫𝙞𝙙𝙚𝙤 \n🔥 𝙏𝙞𝙩𝙪𝙡𝙤: ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+    let qu = args[1] || '360'
+    let q = qu + 'p'
+    let v = youtubeLink
+    const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+    const dl_url = await yt.video[q].download()
+    const ttl = await yt.title
+    const size = await yt.video[q].fileSizeH
+    await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${ttl}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch (E1) {
-//console.log('Error 1 ' + E1)  
+    //console.log('Error 1 ' + E1)  
 try {  
-let mediaa = await ytMp4(youtubeLink)
-await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `_${wm}_`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m })     
+    let mediaa = await ytMp4(youtubeLink)
+    await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `╭━❰  *YOUTUBE*  ❱━⬣\nVideo de YouTube\n╰━❰ *${wm}* ❱━⬣`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m })     
 } catch (E2) {  
-//console.log('Error 2 ' + E2)   
+    //console.log('Error 2 ' + E2)   
 try {
-let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${youtubeLink}`)    
-let lolh = await lolhuman.json()
-let n = lolh.result.title || 'error'
-let n2 = lolh.result.link
-let n3 = lolh.result.size
-let n4 = lolh.result.thumbnail
-await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `🔰 𝘼𝙦𝙪𝙞 𝙚𝙨𝙩𝙖 𝙩𝙪 𝙫𝙞𝙙𝙚𝙤 \n🔥 𝙏𝙞𝙩𝙪𝙡𝙤: ${n}`, thumbnail: await fetch(n4) }, { quoted: m })
+    let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${youtubeLink}`)    
+    let lolh = await lolhuman.json()
+    let n = lolh.result.title || 'error'
+    let n2 = lolh.result.link
+    let n3 = lolh.result.size
+    let n4 = lolh.result.thumbnail
+    await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${n}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(n4) }, { quoted: m })
 } catch (E3) {
-//console.log('Error 3 ' + E3)   
+    //console.log('Error 3 ' + E3)   
 }}}}
-handler.command = /^video|fgmp4|dlmp4|getvid|yt(v|mp4)?$/i
+
+handler.command = ['ytmp4', 'ytv']
 export default handler
 
 function bytesToSize(bytes) {
@@ -117,3 +109,4 @@ for (let i = 0; i < result.length; i++) { url.push(result[i].url) }
 let random = url[0];
 let getVideo = await ytMp4(random);
 resolve(getVideo)}).catch(reject)})};
+  
