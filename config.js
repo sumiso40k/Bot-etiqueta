@@ -79,8 +79,8 @@ global.author = 'Airi-Bot'
 
 //------------[ Versión | Nombre | cuentas ]------------
 
-global.wm = 'Airi-Bot'
-global.vs = '1.6.5'
+global.wm = '🄰🄸🅁🄸-🄱🄾🅃'
+global.vs = '1.0.0'
 global.yt = 'https://www.youtube.com/@elrebelde.21'
 global.tiktok = 'tiktok.com/@elrebelde21'
 global.md = 'https://github.com/elrebelde21/LoliBot-MD'
