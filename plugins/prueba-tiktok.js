@@ -23,49 +23,23 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
       return message.reply("*`No se encontraron resultados para la búsqueda en TikTok`*");
     }
 
-    let selectedVideos = videoResults.slice(0, 5); // Usamos slice en lugar de splice para no modificar el array original
+    let selectedVideos = videoResults.slice(0, 5);
     console.log("Videos seleccionados:", selectedVideos);
 
-    let videoMessages = [];
+    let messageText = `*Resultados de TikTok para:* ${text}\n\n`;
+    selectedVideos.forEach((video, index) => {
+      messageText += `*${index + 1}.* *Título:* ${video.title}\n*Autor:* ${video.author.nickname} (@${video.author.username})\n*URL:* ${video.url}\n\n`;
+    });
 
-    for (let video of selectedVideos) {
-      videoMessages.push({
-        'body': proto.Message.InteractiveMessage.Body.fromObject({
-          'text': `*Título:* ${video.title}\n*Autor:* ${video.author.nickname} (@${video.author.username})\n*URL:* ${video.url}`
-        })
-      });
-    }
+    console.log("Texto del mensaje:", messageText);
 
-    console.log("Mensajes de video generados:", videoMessages);
+    const finalMessage = {
+      conversation: messageText
+    };
 
-    const finalMessage = generateWAMessageFromContent(message.chat, {
-      'viewOnceMessage': {
-        'message': {
-          'messageContextInfo': {
-            'deviceListMetadata': {},
-            'deviceListMetadataVersion': 2
-          },
-          'interactiveMessage': proto.Message.InteractiveMessage.fromObject({
-            'body': proto.Message.InteractiveMessage.Body.create({
-              'text': "*`Resultados de TikTok para :`* " + text
-            }),
-            'footer': proto.Message.InteractiveMessage.Footer.create({
-              'text': "`Resultados proporcionados por la API de TikTok`"
-            }),
-            'header': proto.Message.InteractiveMessage.Header.create({
-              'hasMediaAttachment': false
-            }),
-            'carouselMessage': proto.Message.InteractiveMessage.CarouselMessage.fromObject({
-              'cards': videoMessages
-            })
-          })
-        }
-      }
-    }, { 'quoted': message });
+    await conn.sendMessage(message.chat, finalMessage, { quoted: message });
+    console.log("Mensaje enviado correctamente");
 
-    console.log("Mensaje final generado:", finalMessage);
-
-    await conn.relayMessage(message.chat, finalMessage.message, { 'messageId': finalMessage.key.id });
   } catch (error) {
     console.error("Error al manejar la solicitud:", error);
     return message.reply("*`Hubo un error al procesar tu solicitud`*");
