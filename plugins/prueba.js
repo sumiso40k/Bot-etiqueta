@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { generateWAMessageContent, generateWAMessageFromContent, proto } from '@whiskeysockets/baileys';
 
-let handler = async (message, { conn, text, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
-        return conn.sendMessage(message.key.remoteJid, { text: 'Escribe el texto que quieres buscar en Pinterest' });
+        return conn.sendMessage(m.key.remoteJid, { text: 'Escribe el texto que quieres buscar en Pinterest' });
     }
 
     async function getImageMessage(url) {
@@ -26,12 +26,12 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
     }
 
     for (let msg of imageMessages) {
-        const messageContent = generateWAMessageFromContent(message.key.remoteJid, {
+        const messageContent = generateWAMessageFromContent(m.key.remoteJid, {
             imageMessage: msg.imageMessage,
             extendedTextMessage: { text: msg.caption }
         });
 
-        await conn.relayMessage(message.key.remoteJid, messageContent.message, { messageId: messageContent.key.id });
+        await conn.relayMessage(m.key.remoteJid, messageContent.message, { messageId: messageContent.key.id });
     }
 };
 
