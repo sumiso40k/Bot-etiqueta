@@ -3,7 +3,7 @@ import { generateWAMessageContent, generateWAMessageFromContent, proto } from '@
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
-        return conn.sendMessage(m.key.remoteJid, { text: 'Escribe el texto que quieres buscar en Pinterest' });
+        return conn.sendMessage(m.chat.remoteJid, { text: 'Escribe el texto que quieres buscar en Pinterest' });
     }
 
     async function getImageMessage(url) {
@@ -26,12 +26,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 
     for (let msg of imageMessages) {
-        const messageContent = generateWAMessageFromContent(m.key.remoteJid, {
+        const messageContent = generateWAMessageFromContent(m.chat.remoteJid, {
             imageMessage: msg.imageMessage,
             extendedTextMessage: { text: msg.caption }
         });
 
-        await conn.relayMessage(m.key.remoteJid, messageContent.message, { messageId: messageContent.key.id });
+        await conn.relayMessage(m.chat.remoteJid, messageContent.m, { messageId: messageContent.chat.id });
     }
 };
 
