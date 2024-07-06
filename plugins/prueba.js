@@ -37,7 +37,7 @@ return data.result
 }
 
 async function getGoogleImages(query) {
-let response = await fetch(`https://aemt.me/googleimage?query=${encodeURIComponent(query)}`)
+let response = await fetch(`https://delirios-api-delta.vercel.app/search/gimage?query=${encodeURIComponent(query)}`)
 let data = await response.json()
 return data.result
 }
