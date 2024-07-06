@@ -34,7 +34,7 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
     console.log("Texto del mensaje:", messageText);
 
     const finalMessage = {
-      conversation: messageText
+      text: messageText
     };
 
     await conn.sendMessage(message.chat, finalMessage, { quoted: message });
@@ -42,7 +42,7 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
 
   } catch (error) {
     console.error("Error al manejar la solicitud:", error);
-    return message.reply("*`Hubo un error al procesar tu solicitud`*");
+    return message.reply(`*Hubo un error al procesar tu solicitud: ${error.message}*`);
   }
 };
 
