@@ -1,6 +1,7 @@
 import { createHash } from 'crypto'
 
 const Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
+
 const handler = async function(m, { conn, text, usedPrefix, command }) {
   const user = global.db.data.users[m.sender]
   
@@ -20,8 +21,8 @@ const handler = async function(m, { conn, text, usedPrefix, command }) {
   
   age = parseInt(age)
   
-  if (age > 100) throw '*[❗] Como sigues vivo con esa edad? 👴🏻*'
-  if (age < 5) throw '*[❗] Un bebé que sabe usar WhatsApp? 😲*'
+  if (age > 100) throw '*[ ❗ ] Como sigues vivo con esa edad? 👴🏻*'
+  if (age < 5) throw '*[ ❗ ] Un bebé que sabe usar WhatsApp? 😲*'
   
   user.name = name.trim()
   user.age = age
@@ -44,10 +45,10 @@ const handler = async function(m, { conn, text, usedPrefix, command }) {
 ┗┅ ━━━━━━━━━━━━ ┅ ┅ ┅
 `.trim()
 
-  await conn.sendButton(m.chat, caption, '', '', [
+  await conn.sendButton(m.chat, null, caption, null, [
     ['Perfil', '#perfil'],
     ['Menú', '#menu']
-  ], m)
+  ], null, null, m)
   
   global.db.data.users[m.sender].money += 10000
   global.db.data.users[m.sender].exp += 10000
