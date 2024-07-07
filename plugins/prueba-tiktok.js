@@ -26,18 +26,41 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
     let selectedVideos = videoResults.slice(0, 5);
     console.log("Videos seleccionados:", selectedVideos);
 
-    let messageText = `*Resultados de TikTok para:* ${text}\n\n`;
-    selectedVideos.forEach((video, index) => {
-      messageText += `*${index + 1}.* *Título:* ${video.title}\n*Autor:* ${video.author.nickname} (@${video.author.username})\n*URL:* ${video.url}\n\n`;
-    });
+    let cards = selectedVideos.map((video, index) => ({
+      body: proto.Message.InteractiveMessage.Body.fromObject({
+        text: `*Título:* ${video.title}\n*Autor:* ${video.author.nickname} (@${video.author.username})\n*URL:* ${video.url}`
+      }),
+      footer: proto.Message.InteractiveMessage.Footer.fromObject({
+        text: `Video ${index + 1}`
+      })
+    }));
 
-    console.log("Texto del mensaje:", messageText);
+    const finalMessage = generateWAMessageFromContent(message.chat, {
+      viewOnceMessage: {
+        message: {
+          messageContextInfo: {
+            deviceListMetadata: {},
+            deviceListMetadataVersion: 2
+          },
+          interactiveMessage: proto.Message.InteractiveMessage.fromObject({
+            body: proto.Message.InteractiveMessage.Body.create({
+              text: `*Resultados de TikTok para:* ${text}`
+            }),
+            footer: proto.Message.InteractiveMessage.Footer.create({
+              text: "`Resultados de TikTok`"
+            }),
+            header: proto.Message.InteractiveMessage.Header.create({
+              hasMediaAttachment: false
+            }),
+            carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({
+              cards: cards
+            })
+          })
+        }
+      }
+    }, { quoted: message });
 
-    const finalMessage = {
-      text: messageText
-    };
-
-    await conn.sendMessage(message.chat, finalMessage, { quoted: message });
+    await conn.relayMessage(message.chat, finalMessage.message, { messageId: finalMessage.key.id });
     console.log("Mensaje enviado correctamente");
 
   } catch (error) {
