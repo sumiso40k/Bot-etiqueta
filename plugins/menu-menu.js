@@ -21,13 +21,13 @@ ${readMore}
 
 > 🪙 *ECONOMÍA* 🪙
 
-▢ \`.cartera\`
+▢ \`.cartera\` 🔒
 ⓘ _Muestra lo que tienes en tu cartera_
 
-▢ \`.minar1\`
+▢ \`.minar1\` 🔒
 ⓘ _Obtienes diamantes_
 
-▢ \`.minar2\`
+▢ \`.minar2\` 🔒
 ⓘ _Obtienes monedas_
 
 
