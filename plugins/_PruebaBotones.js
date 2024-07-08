@@ -17,8 +17,9 @@ const handler = async function(m, { conn }) {
   ];
 
   try {
-    await conn.sendButton(m.chat, caption, null, buttons, null, null, true); // Ajusta los parámetros según sea necesario
+    await conn.sendButton(m.chat, caption, null, buttons, null, true); // Ajusta los parámetros según sea necesario
   } catch (error) {
+    m.reply(error);
     console.error('Error al enviar el botón:', error);
   }
 };
