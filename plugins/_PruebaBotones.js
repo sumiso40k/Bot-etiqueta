@@ -1,5 +1,4 @@
 const handler = async function(m, { conn }) {
-  // Mensaje de prueba
   const caption = `
 ┏┅ ━━━━━━━━━━━━ ┅ ━
 ┇「 𝐌𝐄𝐍𝐒𝐀𝐉𝐄 𝐃𝐄 𝐏𝐑𝐔𝐄𝐁𝐀 」
@@ -10,14 +9,20 @@ const handler = async function(m, { conn }) {
 ┗┅ ━━━━━━━━━━━━ ┅ ┅ ┅
 `.trim()
 
-  // Envío del mensaje con botones
-  await conn.sendButton(m.chat, caption, null, [
-    ['Botón 1', '.menu'],
-    ['Botón 2', '.perfil']
-  ], m)
+  const buttons = [
+    ['Botón 1', 'comando1'],
+    ['Botón 2', 'comando2']
+  ];
+
+  // Verificar que buttons sea un array antes de usarlo
+  if (!Array.isArray(buttons)) {
+    throw new Error('El parámetro "buttons" debe ser un array.');
+  }
+
+  await conn.sendButton(m.chat, caption, null, buttons, m);
 }
 
-handler.help = ['prueba']
-handler.tags = ['test']
-handler.command = /^(prueba)$/i
-export default handler
+handler.help = ['prueba'];
+handler.tags = ['test'];
+handler.command = /^(prueba)$/i;
+export default handler;
