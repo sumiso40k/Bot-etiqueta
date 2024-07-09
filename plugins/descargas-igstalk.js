@@ -50,12 +50,13 @@ handler.money = 150
 let sticker = 'https://qu.ax/Wdsb.webp'
 conn.sendFile(m.chat, sticker, 'error.webp', '', m)
 console.log(e)}}
+
+
 handler.help = ['igstalk'].map(v => v + ' <username>')
 handler.tags = ['downloader']
 handler.command = /^(igstalk|verig|igver)$/i
-//handler.money = 150
-handler.level = 3
-handler.register = true
+
+handler.owner = true
 export default handler
 const delay = time => new Promise(res => setTimeout(res, time))
 
