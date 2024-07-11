@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const {
   generateWAMessageContent,
   generateWAMessageFromContent,
@@ -43,52 +42,33 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
 
     for (let imageUrl of selectedImages) {
       imageMessages.push({
-        'body': proto.Message.InteractiveMessage.Body.fromObject({
-          'text': "*`Imagen`* -" + (" " + count++)
+        'body': proto.Message.ImageMessage.create({
+          'url': imageUrl
         }),
-        'footer': proto.Message.InteractiveMessage.Footer.fromObject({
+        'footer': proto.Message.TextMessage.create({
           'text': "author"
         }),
-        'header': proto.Message.InteractiveMessage.Header.fromObject({
-          'title': '',
-          'hasMediaAttachment': true,
-          'imageMessage': await createImageMessage(imageUrl)
-        }),
-        'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
+        'buttonsMessage': proto.Message.ButtonsMessage.create({
+          'headerType': 4,
+          'imageMessage': await createImageMessage(imageUrl),
+          'contentText': '*`Imagen`* -' + (" " + count++),
+          'footerText': '𝚁𝙴𝙼-𝙲𝙷𝙰𝙼 𝙱𝚈 𝙶𝙰𝙱𝚁𝙸𝙴𝙻 - 𝙹𝚃𝚡𝚜',
           'buttons': [{
-            'name': "reply", // Cambiamos "cta_url" por "reply"
-            'buttonParamsJson': `{"display_text":"Menu 🗒️", "button_text":".menu"}` // Parámetros del botón
+            'buttonId': '.menu',
+            'buttonText': { 'displayText': 'Menu 🗒️' },
+            'type': 1
           }]
         })
       });
     }
 
-    const finalMessage = generateWAMessageFromContent(message.chat, {
-      'viewOnceMessage': {
-        'message': {
-          'messageContextInfo': {
-            'deviceListMetadata': {},
-            'deviceListMetadataVersion': 2
-          },
-          'interactiveMessage': proto.Message.InteractiveMessage.fromObject({
-            'body': proto.Message.InteractiveMessage.Body.create({
-              'text': "*`Resultado de :`* " + text
-            }),
-            'footer': proto.Message.InteractiveMessage.Footer.create({
-              'text': "`𝚁𝙴𝙼-𝙲𝙷𝙰𝙼 𝙱𝚈 𝙶𝙰𝙱𝚁𝙸𝙴𝙻 - 𝙹𝚃𝚡𝚜`"
-            }),
-            'header': proto.Message.InteractiveMessage.Header.create({
-              'hasMediaAttachment': false
-            }),
-            'carouselMessage': proto.Message.InteractiveMessage.CarouselMessage.fromObject({
-              'cards': [...imageMessages]
-            })
-          })
-        }
-      }
-    }, { 'quoted': message });
+    for (let imageMessage of imageMessages) {
+      const finalMessage = generateWAMessageFromContent(message.chat, {
+        'buttonsMessage': imageMessage
+      }, { 'quoted': message });
 
-    await conn.relayMessage(message.chat, finalMessage.message, { 'messageId': finalMessage.key.id });
+      await conn.relayMessage(message.chat, finalMessage.message, { 'messageId': finalMessage.key.id });
+    }
     
   } catch (error) {
     console.error(error);
