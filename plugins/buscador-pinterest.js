@@ -38,7 +38,7 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
         'text': "*Imagen* -" + (" " + count++)
       }),
       'footer': proto.Message.InteractiveMessage.Footer.fromObject({
-        'text': "author"
+        'text': ""
       }),
       'header': proto.Message.InteractiveMessage.Header.fromObject({
         'title': '',
@@ -46,10 +46,7 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
         'imageMessage': await createImageMessage(imageUrl)
       }),
       'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
-        /*'buttons': [{
-          'name': "cta_url",
-          'buttonParamsJson': "{\"display_text\":\"Abrir en el navegador\",\"url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + text + "\",\"merchant_url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + text + "\"}"
-        }]*/
+        
       })
     });
   }
