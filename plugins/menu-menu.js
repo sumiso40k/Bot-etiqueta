@@ -21,6 +21,9 @@ let handler = async (m, { conn }) => {
 
 > 🔍 *BUSCADORES* 🔍
 
+▢ \`.pinterest\`
+ⓘ _Busca imágenes en Pinterest_
+
 ▢ \`.ytsearch\`
 ⓘ _Busca videos en Youtube_
 
@@ -31,10 +34,19 @@ ${readMore}
 > 📥 *DESCARGAS* 📥
 
 ▢ \`.ytmp3\`
-ⓘ _Descarga audio de Youtube_
+ⓘ _Descarga audios de Youtube_
 
 ▢ \`.ytmp4\`
-ⓘ _Descarga video de Youtube_
+ⓘ _Descarga videos de Youtube_
+
+▢ \`.fb\`
+ⓘ _Descarga videos de Facebook_
+
+▢ \`.ig\`
+ⓘ _Descarga videos de Instagram_
+
+▢ \`.tiktok\`
+ⓘ _Descarga videos de TikTok_
 
 
 _Nota: Algunos comandos necesitan parámetros adicionales._
