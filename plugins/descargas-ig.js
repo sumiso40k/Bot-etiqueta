@@ -10,7 +10,7 @@ import {fileTypeFromBuffer} from 'file-type';
 const handler = async (m, {conn, args, command, usedPrefix}) => {
 
     if (!args[0]) return conn.reply(m.chat,`_*[ ⚠️ ] Agrega el enlace de un video o una publicación de Instagram*_\n\n> Ejemplo:\n_.${command} https://www.instagram.com/_`, m);
-    await conn.sendMessage(m.chat, '_*[ ⏳ ] Descargando...*_');
+    await conn.reply(m.chat, '_*[ ⏳ ] Descargando...*_', m);
 
     try {
         const img = await instagramDl(args[0]);
