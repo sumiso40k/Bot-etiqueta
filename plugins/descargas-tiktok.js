@@ -7,7 +7,7 @@ import { tiktokdl } from '@bochilteam/scraper'
 let handler = async (m, { conn, text, args, usedPrefix, command}) => {
 
 
-if (!text) return conn.reply(m.chat, `_*[ ⚠️ ] Agrega el enlace de un video de TikTok*_\n\n> Ejemplo:\n_.tiktok https://vm.tiktok.com/_`, m)
+if (!text) return conn.reply(m.chat, `_*[ ⚠️ ] Agrega el enlace de un video de TikTok*_\n\n> Ejemplo:\n_.tiktok https://vm.tiktok.com_`, m)
 
 if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `_*[ ⚠️ ] El enlace es incorrecto*_`,  m)  
 await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`,  m) 
@@ -16,14 +16,17 @@ try {
     const dataF = await tiktok.v1(args[0])
     conn.sendFile(m.chat, dataF.play, 'tiktok.mp4', `_*☑️ Video de TikTok*_`, m) 
 } catch (e1) {
+    m.reply('reintentando 1/3');
 try {
     const tTiktok = await tiktokdlF(args[0])
     conn.sendFile(m.chat, tTiktok.video, 'tiktok.mp4', `_*☑️ Video de TikTok*_`, m) 
 } catch (e2) {
+    m.reply('reintentando 2/3');
 try {
     let p = await fg.tiktok(args[0]) 
     conn.sendFile(m.chat, p.nowm, 'tiktok.mp4', `_*☑️ Video de TikTok*_`, m)
 } catch (e3) {
+    m.reply('reintentando 3/3');
 try { 
     const { author: { nickname }, video, description } = await tiktokdl(args[0])
     const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd
@@ -52,3 +55,4 @@ var getdata = cheerio.load(data.html);
 if (data.status) {
 return { status: true, thumbnail: getdata("img").attr("src"), video: getdata("div.download-links > div:nth-child(1) > a").attr("href"), audio: getdata("div.download-links > div:nth-child(2) > a").attr("href"), }} else
 return { status: false }}
+    
