@@ -17,18 +17,6 @@ let handler = async (m, { conn }) => {
 
 ▢ \`.unreg\`
 ⓘ _Borra tu registro_
-${readMore}
-
-> 🪙 *ECONOMÍA* 🪙
-
-▢ \`.cartera\` 🔒
-ⓘ _Muestra lo que tienes en tu cartera_
-
-▢ \`.minar1\` 🔒
-ⓘ _Obtienes diamantes_
-
-▢ \`.minar2\` 🔒
-ⓘ _Obtienes monedas_
 
 
 > 🔍 *BUSCADORES* 🔍
@@ -38,7 +26,7 @@ ${readMore}
 
 ▢ \`.play\`
 ⓘ _Busca algo específico en Youtube, te da información y opción de descargar_
-
+${readMore}
 
 > 📥 *DESCARGAS* 📥
 
