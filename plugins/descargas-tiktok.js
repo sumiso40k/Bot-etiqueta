@@ -13,7 +13,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command}) => {
 
     try {
         const dataF = await tiktok.v1(args[0]);
-        console.log(dataF); // Depuración
+        console.log(dataF);
         if (dataF && dataF.play) {
             conn.sendFile(m.chat, dataF.play, 'tiktok.mp4', `_*☑️ Video de TikTok*_`, m);
         } else {
@@ -23,7 +23,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command}) => {
         m.reply('reintentando 1/3');
         try {
             const tTiktok = await tiktokdlF(args[0]);
-            console.log(tTiktok); // Depuración
+            console.log(tTiktok);
             if (tTiktok && tTiktok.video) {
                 conn.sendFile(m.chat, tTiktok.video, 'tiktok.mp4', `_*☑️ Video de TikTok*_`, m);
             } else {
@@ -33,7 +33,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command}) => {
             m.reply('reintentando 2/3');
             try {
                 let p = await fg.tiktok(args[0]);
-                console.log(p); // Depuración
+                console.log(p);
                 if (p && p.nowm) {
                     conn.sendFile(m.chat, p.nowm, 'tiktok.mp4', `_*☑️ Video de TikTok*_`, m);
                 } else {
@@ -43,7 +43,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command}) => {
                 m.reply('reintentando 3/3');
                 try { 
                     const { author: { nickname }, video, description } = await tiktokdl(args[0]);
-                    console.log(video); // Depuración
+                    console.log(video);
                     const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd;
                     if (url) {
                         conn.sendFile(m.chat, url, 'tiktok.mp4', `_*☑️ Video de TikTok*_`, m);
@@ -51,7 +51,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command}) => {
                         throw new Error('Video no encontrado');
                     }
                 } catch (e4) {
-                    console.error(e4); // Depuración
+                    console.error(e4);
                     await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el video, prueba con otro enlace o inténtalo más tarde*_`, m);
                 }
             }
