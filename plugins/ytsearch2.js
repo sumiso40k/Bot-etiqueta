@@ -73,7 +73,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ['', 'earch'].map(v => 'yts' + v + ' <pencarian>');
 handler.tags = ['tools'];
-handler.command = /^playlist|ytbuscar|yts(earch)?$/i;
+handler.command = ['yts2']
 //handler.limit = 1
 //handler.level = 4
 export default handler;
