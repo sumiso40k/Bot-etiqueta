@@ -24,7 +24,8 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
             const filename = `${data.result.title || 'audio'}.mp3`;
             
             await conn.reply(m.chat, `_*[ ⏳ ] Enviando el archivo...*_`, m);
-            await conn.sendFile(m.chat, downloadUrl, filename, `Title: ${data.result.title}\nUploader: ${data.result.uploader}`, m);
+            //await conn.sendFile(m.chat, downloadUrl, filename, `Title: ${data.result.title}\nUploader: ${data.result.uploader}`, m);
+            await conn.sendMessage(m.chat, { audio: { url: data.result.link }, fileName: `${filename}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
             await conn.reply(m.chat, `_*[ ✅ ] Archivo enviado con éxito*_`, m);
         } else {
             throw new Error('No se pudo obtener la URL de descarga');
