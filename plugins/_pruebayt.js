@@ -21,7 +21,7 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
             await conn.reply(m.chat, `_*[ ✅ ] Enlace de descarga obtenido*_`, m);
             
             const downloadUrl = data.result.link.link;
-            const filename = `${data.result.title || 'audio'}.webm`;
+            const filename = `${data.result.title || 'audio'}.mp3`;
             
             await conn.reply(m.chat, `_*[ ⏳ ] Enviando el archivo...*_`, m);
             await conn.sendFile(m.chat, downloadUrl, filename, `Title: ${data.result.title}\nUploader: ${data.result.uploader}`, m);
