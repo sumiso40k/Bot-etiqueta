@@ -39,8 +39,9 @@ try {
             let infoo = await ytdl.getInfo('https://youtu.be/' + __res[0].videoId)
             let ress = await ytdl.chooseFormat(infoo.formats, { filter: 'audioonly' })
             conn.sendMessage(m.chat, { audio: { url: ress.url }, fileName: __res[0].title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })  
-        } catch {
+        } catch e {
             await conn.reply(m.chat, '_*[ ❌ ] Ocurrió un error al descargar el audio, inténtalo más tarde*_', m)
+            m.reply(e);
         }
     }
 }}
