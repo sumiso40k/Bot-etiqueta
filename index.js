@@ -14,38 +14,9 @@ const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
  
 say('Airi-Bot', {
-font: 'simple',
+font: 'slick',
 align: 'center',
 gradient: ['red', 'magenta']})
-say('Airi-Bot', {
-font: 'simpleBlock',
-align: 'center',
-gradient: ['red', 'magenta']})
-say('Airi-Bot', {
-font: '3d',
-align: 'center',
-gradient: ['red', 'magenta']})
-say('Airi-Bot', {
-font: 'simple3d',
-align: 'center',
-gradient: ['red', 'magenta']})
-say('Airi-Bot', {
-font: 'electron',
-align: 'center',
-gradient: ['red', 'magenta']})
-
-/*
-tiny
-grid
-pallet
-shade
-huge
-simple
-simpleBlock
-3d
-simple3d
-electron
-*/
 say(`By: Rudyrex`, {
 font: 'console',
 align: 'center',
