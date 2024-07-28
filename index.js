@@ -14,29 +14,26 @@ const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
  
 say('Airi-Bot', {
-font: 'slick',
+font: 'simple',
 align: 'center',
 gradient: ['red', 'magenta']})
 say('Airi-Bot', {
-font: 'tiny',
+font: 'simpleBlock',
 align: 'center',
 gradient: ['red', 'magenta']})
 say('Airi-Bot', {
-font: 'grid',
+font: '3d',
 align: 'center',
 gradient: ['red', 'magenta']})
 say('Airi-Bot', {
-font: 'pallet',
+font: 'simple3d',
 align: 'center',
 gradient: ['red', 'magenta']})
 say('Airi-Bot', {
-font: 'shade',
+font: 'electron',
 align: 'center',
 gradient: ['red', 'magenta']})
-say('Airi-Bot', {
-font: 'huge',
-align: 'center',
-gradient: ['red', 'magenta']})
+
 /*
 tiny
 grid
