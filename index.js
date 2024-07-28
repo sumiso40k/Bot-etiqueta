@@ -18,17 +18,37 @@ font: 'slick',
 align: 'center',
 gradient: ['red', 'magenta']})
 say('Airi-Bot', {
-font: 'slick',
+font: 'tiny',
 align: 'center',
 gradient: ['red', 'magenta']})
 say('Airi-Bot', {
-font: 'slick',
+font: 'grid',
 align: 'center',
 gradient: ['red', 'magenta']})
 say('Airi-Bot', {
-font: 'slick',
+font: 'pallet',
 align: 'center',
 gradient: ['red', 'magenta']})
+say('Airi-Bot', {
+font: 'shade',
+align: 'center',
+gradient: ['red', 'magenta']})
+say('Airi-Bot', {
+font: 'huge',
+align: 'center',
+gradient: ['red', 'magenta']})
+/*
+tiny
+grid
+pallet
+shade
+huge
+simple
+simpleBlock
+3d
+simple3d
+electron
+*/
 say(`By: Rudyrex`, {
 font: 'console',
 align: 'center',
