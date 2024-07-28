@@ -14,7 +14,19 @@ const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
  
 say('Airi-Bot', {
-font: 'block',
+font: 'slick',
+align: 'center',
+gradient: ['red', 'magenta']})
+say('Airi-Bot', {
+font: 'slick',
+align: 'center',
+gradient: ['red', 'magenta']})
+say('Airi-Bot', {
+font: 'slick',
+align: 'center',
+gradient: ['red', 'magenta']})
+say('Airi-Bot', {
+font: 'slick',
 align: 'center',
 gradient: ['red', 'magenta']})
 say(`By: Rudyrex`, {
