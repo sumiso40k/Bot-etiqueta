@@ -26,6 +26,8 @@ import store from './lib/store.js'
 import readline from 'readline'
 import NodeCache from 'node-cache'
 
+const pinkAiri = chalk.hex('#E991E6');
+
 const { proto} = (await import('@whiskeysockets/baileys')).default;
 const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, jidNormalizedUser, PHONENUMBER_MCC } = await import('@whiskeysockets/baileys')
 
@@ -468,7 +470,8 @@ originalConsoleMethod.apply(console, arguments)
 setInterval(async () => {
 if (stopped === 'close' || !conn || !conn.user) return
 await clearTmp()
-console.log(chalk.bold.cyanBright('\n❬ 🤖  ❭ ➤ ARCHIVOS DE LA CARPETA TMP ELIMINADOS'))}, 1000 * 60 * 3) // 3 min
+  console.log(`${pinkAiri('╭━❬ ✤Airi-Bot✤ ❭━╮')}\n${pinkAiri('│')} ${green('ARCHIVOS DE LA CARPETA TMP ELIMINADOS')}\n${pinkAiri('╰━➤')}`)
+}, 1000 * 60 * 3) // 3 min
 
 //setInterval(async () => {
 //if (stopped === 'close' || !conn || !conn.user) return
