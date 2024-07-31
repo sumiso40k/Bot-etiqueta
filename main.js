@@ -468,7 +468,7 @@ originalConsoleMethod.apply(console, arguments)
 setInterval(async () => {
 if (stopped === 'close' || !conn || !conn.user) return
 await clearTmp()
-console.log(chalk.bold.cyanBright(`\n❬ 🤖 ❭ ➤ ` + `ARCHIVOS DE LA CARPETA TMP ELIMINADOS`))}, 1000 * 60 * 3) // 3 min
+console.log(chalk.bold.cyanBright('\n❬ 🤖  ❭ ➤ ARCHIVOS DE LA CARPETA TMP ELIMINADOS'))}, 1000 * 60 * 3) // 3 min
 
 //setInterval(async () => {
 //if (stopped === 'close' || !conn || !conn.user) return
