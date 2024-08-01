@@ -470,7 +470,7 @@ originalConsoleMethod.apply(console, arguments)
 setInterval(async () => {
 if (stopped === 'close' || !conn || !conn.user) return
 await clearTmp()
-  console.log(`${pinkAiri('╭━❬ ✤Airi-Bot✤ ❭━╮')}\n${pinkAiri('│')} ${pinkAiri('ARCHIVOS DE LA CARPETA TMP ELIMINADOS')}\n${pinkAiri('╰━➤')}`)
+  console.log(`${pinkAiri('╭━❬ ✤ Airi-Bot ✤ ❭━╮')}\n${pinkAiri('│')} ${pinkAiri('ARCHIVOS DE LA CARPETA TMP ELIMINADOS')}\n${pinkAiri('╰━➤')}`)
 }, 1000 * 60 * 3) // 3 min
 
 //setInterval(async () => {
