@@ -470,7 +470,7 @@ originalConsoleMethod.apply(console, arguments)
 setInterval(async () => {
 if (stopped === 'close' || !conn || !conn.user) return
 await clearTmp()
-  const pinkAiri = customChalk.hex('#E991E6');
+  //const pinkAiri = customChalk.hex('#E991E6');
   
 //console.log(chalk.bold.orchid('Este texto debería ser rosa.'));
   console.log(`chalk.bold.green('\n╭━❬ ✤ Airi-Bot ✤ ❭━╮') + chalk.bold.green('\n│') + chalk.bold.green('ARCHIVOS DE LA CARPETA TMP ELIMINADOS') + chalk.bold.green('\n╰━➤')`)
