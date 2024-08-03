@@ -27,7 +27,7 @@ import readline from 'readline'
 import NodeCache from 'node-cache'
 
 
-const customChalk = new Chalk({ level: 3 });
+//const customChalk = new Chalk({ level: 3 });
 const { proto} = (await import('@whiskeysockets/baileys')).default;
 const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, jidNormalizedUser, PHONENUMBER_MCC } = await import('@whiskeysockets/baileys')
 
