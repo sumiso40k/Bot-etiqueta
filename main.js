@@ -472,7 +472,7 @@ if (stopped === 'close' || !conn || !conn.user) return
 await clearTmp()
   const pinkAiri = chalk.hex('#E991E6');
   
-console.log(pinkAiri('Este texto debería ser rosa.'));
+console.log(chalk.bold.orchid('Este texto debería ser rosa.'));
   console.log(`${pinkAiri('╭━❬ ✤ Airi-Bot ✤ ❭━╮')}\n${pinkAiri('│')} ${pinkAiri('ARCHIVOS DE LA CARPETA TMP ELIMINADOS')}\n${pinkAiri('╰━➤')}`)
 }, 1000 * 60 * 3) // 3 min
 
