@@ -9,7 +9,7 @@ import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, wa
 import yargs from 'yargs'
 import { spawn } from 'child_process'
 import lodash from 'lodash'
-import chalk, {Chalk} from 'chalk'
+import chalk from 'chalk'
 import fs from 'fs'
 import { watchFile, unwatchFile } from 'fs'  
 import syntaxerror from 'syntax-error'
@@ -472,8 +472,8 @@ if (stopped === 'close' || !conn || !conn.user) return
 await clearTmp()
   const pinkAiri = customChalk.hex('#E991E6');
   
-console.log(chalk.bold.orchid('Este texto debería ser rosa.'));
-  console.log(`${pinkAiri('╭━❬ ✤ Airi-Bot ✤ ❭━╮')}\n${pinkAiri('│')} ${pinkAiri('ARCHIVOS DE LA CARPETA TMP ELIMINADOS')}\n${pinkAiri('╰━➤')}`)
+//console.log(chalk.bold.orchid('Este texto debería ser rosa.'));
+  //console.log(`${pinkAiri('╭━❬ ✤ Airi-Bot ✤ ❭━╮')}\n${pinkAiri('│')} ${pinkAiri('ARCHIVOS DE LA CARPETA TMP ELIMINADOS')}\n${pinkAiri('╰━➤')}`)
 }, 1000 * 60 * 3) // 3 min
 
 //setInterval(async () => {
