@@ -9,7 +9,7 @@ import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, wa
 import yargs from 'yargs'
 import { spawn } from 'child_process'
 import lodash from 'lodash'
-import chalk from 'chalk'
+import chalk, {Chalk} from 'chalk'
 import fs from 'fs'
 import { watchFile, unwatchFile } from 'fs'  
 import syntaxerror from 'syntax-error'
@@ -27,7 +27,7 @@ import readline from 'readline'
 import NodeCache from 'node-cache'
 
 
-
+const customChalk = new Chalk({ level: 3 });
 const { proto} = (await import('@whiskeysockets/baileys')).default;
 const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, jidNormalizedUser, PHONENUMBER_MCC } = await import('@whiskeysockets/baileys')
 
@@ -470,7 +470,7 @@ originalConsoleMethod.apply(console, arguments)
 setInterval(async () => {
 if (stopped === 'close' || !conn || !conn.user) return
 await clearTmp()
-  const pinkAiri = chalk.hex('#E991E6');
+  const pinkAiri = customChalk.hex('#E991E6');
   
 console.log(chalk.bold.orchid('Este texto debería ser rosa.'));
   console.log(`${pinkAiri('╭━❬ ✤ Airi-Bot ✤ ❭━╮')}\n${pinkAiri('│')} ${pinkAiri('ARCHIVOS DE LA CARPETA TMP ELIMINADOS')}\n${pinkAiri('╰━➤')}`)
