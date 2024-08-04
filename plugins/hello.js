@@ -1,6 +1,6 @@
-import {Chalk} from 'chalk';
+import chalk from 'chalk';
 
-const customChalk = new Chalk({level: 3});
+const customChalk = new chalk({level: 3});
 let handler = async (m, { conn }) => {
         m.reply(`Hola mundo`);
         
