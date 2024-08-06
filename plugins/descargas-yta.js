@@ -30,8 +30,9 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
     try {
       let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=${lolkeysapi}&url=${youtubeLink}`);
       let lolh = await lolhuman.json();
+      if (lolh.status !== 200) throw new Error(lolh.message);
       let n = lolh.result.title || 'error';
-      await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m });
+      await conn.sendMessage(m.chat, { audio: { url: lolh.result.link.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m });
     } catch (err2) {
       await conn.reply(m.chat, `_[ ❌ ] Error al descargar con lolhuman API: ${err2.message}_`, m);
 
@@ -42,7 +43,11 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
         let ress = await ytdl.chooseFormat(infoo.formats, { filter: 'audioonly' });
         await conn.sendMessage(m.chat, { audio: { url: ress.url }, fileName: __res[0].title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m });
       } catch (err3) {
-        await conn.reply(m.chat, `_[ ❌ ] Error al descargar con ytdl-core: ${err3.message}_`, m);
+        if (err3.message.includes('Status code: 410')) {
+          await conn.reply(m.chat, `_[ ❌ ] Error al descargar con ytdl-core: El video ya no está disponible (Error 410)._`, m);
+        } else {
+          await conn.reply(m.chat, `_[ ❌ ] Error al descargar con ytdl-core: ${err3.message}_`, m);
+        }
       }
     }
   }
@@ -50,7 +55,6 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
 
 handler.command = ['ytmp3', 'yta'];
 export default handler;
-
 
 
 
