@@ -28,7 +28,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
     await conn.reply(m.chat, `_[ ❌ ] Error al descargar con bochilteam/scraper: ${err1.message}_`, m);
 
     try {
-      let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${youtubeLink}`);
+      let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=${lolkeysapi}&url=${youtubeLink}`);
       let lolh = await lolhuman.json();
       let n = lolh.result.title || 'error';
       await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m });
