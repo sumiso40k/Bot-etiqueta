@@ -158,7 +158,7 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
 // Añadimos información de ayuda y etiquetas al comando
 handler.help = ["ytsearch"];
 handler.tags = ["search"];
-handler.command = ['yts2', 'ytsearch2'];
+handler.command = ['yts8', 'ytsearch8'];
 
 // Exportamos el handler para que pueda ser utilizado por el bot
 export default handler;
