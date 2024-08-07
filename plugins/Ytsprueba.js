@@ -54,7 +54,7 @@ let handler = async (message, { conn, text }) => {
             'name': "quick_reply",
             'buttonParamsJson': JSON.stringify({
               display_text: 'Ver en YouTube',
-              id: result.link
+              id: `.ytmp4 ${result.link}`
             })
           }]
         })
