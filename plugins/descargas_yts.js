@@ -115,7 +115,7 @@ export default handler;
 
 
 
-/*
+
 import yts from 'yt-search';
 let handler = async (m, { conn, usedPrefix, text, args, command }) => {
 if (!text) conn.reply(m.chat, `_*[ ⚠️ ] Ingresa lo que quieres buscar en Youtube*_\n\n> Ejemplo:\n_.${command} música electrónica_`, m)    
@@ -151,4 +151,4 @@ handler.tags = ['dl']
 handler.command = ['yts', 'ytsearch']
 
 export default handler
-*/
+
