@@ -1,15 +1,13 @@
 import axios from 'axios';
-
 const {
   generateWAMessageContent,
   generateWAMessageFromContent,
   proto
 } = (await import("@whiskeysockets/baileys"))["default"];
 
-
 let handler = async (message, { conn, text }) => {
   if (!text) {
-    return message.reply("_*[ ⚠️ ] Ingresa lo que quieres buscar en YouTube*_");
+    return message.reply("_*[ ⚠️ ] Ingresa el texto de lo que quieres buscar en YouTube*_");
   }
 
   async function createImageMessage(url) {
@@ -41,10 +39,10 @@ let handler = async (message, { conn, text }) => {
     for (let result of selectedResults) {
       imageMessages.push({
         'body': proto.Message.InteractiveMessage.Body.fromObject({
-          'text': `*Publicado:* ${result.timeAgo}\n*Link:* ${result.link}`
+          'text': "*`Video`* -" + (" " + count++) 
         }),
         'footer': proto.Message.InteractiveMessage.Footer.fromObject({
-          'text': "*Video* -" + (" " + count++)
+          'text': "author"
         }),
         'header': proto.Message.InteractiveMessage.Header.fromObject({
           'title': result.title, 
@@ -52,22 +50,13 @@ let handler = async (message, { conn, text }) => {
           'imageMessage': await createImageMessage(result.img) 
         }),
         'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
-          'buttons': [
-              /*{
-                'name': "quick_reply",
-                'buttonParamsJson': JSON.stringify({
-                display_text: 'Descargar Audio 🔈',
-                id: `.ytmp3 ${result.link}`
-                })
-              },*/
-              {
-                'name': "quick_reply",
-                'buttonParamsJson': JSON.stringify({
-                display_text: 'Descargar Video 📹',
-                id: `.ytmp4 ${result.link}`
-                })
-              }
-          ]
+          'buttons': [{
+            'name': "quick_reply",
+            'buttonParamsJson': JSON.stringify({
+              display_text: 'Ver en YouTube',
+              id: result.link
+            })
+          }]
         })
       });
     }
@@ -107,7 +96,6 @@ let handler = async (message, { conn, text }) => {
 
 handler.help = ["ytsearch"];
 handler.tags = ["search"];
-handler.command = ['yts8', 'ytsearch8'];
+handler.command = ['yts2', 'ytsearch2'];
 
 export default handler;
-      
