@@ -26,7 +26,7 @@ try {
     const ttl = await yt.title
     const size = await yt.video[q].fileSizeH
     
-    await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${yt}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+    await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${dl_url}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch (E1) {
     //console.log('Error 1 ' + E1)  
 try {  
