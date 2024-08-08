@@ -53,13 +53,13 @@ let handler = async (message, { conn, text }) => {
         }),
         'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
           'buttons': [
-              {
+              /*{
                 'name': "quick_reply",
                 'buttonParamsJson': JSON.stringify({
                 display_text: 'Descargar Audio 🔈',
                 id: `.ytmp3 ${result.link}`
                 })
-              },
+              },*/
               {
                 'name': "quick_reply",
                 'buttonParamsJson': JSON.stringify({
