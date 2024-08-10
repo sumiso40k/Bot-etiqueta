@@ -12,7 +12,7 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        if (data.result && data.result.url) {
+        if (data.result && data.result.downloadUrl) {
             const downloadUrl = data.result.hd || data.result.sd || data.result.downloadUrl;
             const filename = `${data.result.title || 'video'}.mp4`;
             await conn.sendFile(m.chat, downloadUrl, filename, `Title: ${data.result.title}\nCreator: ${data.result.creator}`, m);
@@ -25,5 +25,5 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
     }
 };
 
-handler.command = ['fbvideo2', 'fbvid2'];
+handler.command = ['ytv6', 'ytmp46'];
 export default handler;
