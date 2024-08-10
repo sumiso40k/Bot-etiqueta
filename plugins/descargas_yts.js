@@ -139,6 +139,12 @@ let listSections = [];
                     title: "" ,
                     description: `${v.title}`, 
                     id: `${usedPrefix}ytmp4 ${v.url}`
+                },
+                {
+                    header: "🎥 𝐕𝐈𝐃𝐄𝐎 (𝑫𝑶𝑪𝑼𝑴𝑬𝑵𝑻𝑶)",
+                    title: "" ,
+                    description: `${v.title}`, 
+                    id: `${usedPrefix}ytvdoc ${v.url}`
                 }
             ]
         });
