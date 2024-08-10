@@ -12,10 +12,10 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        if (data.result && data.result.dlink) {
-            const downloadUrl = data.result.hd || data.result.sd || data.result.dlink;
-            const filename = `${data.result.title || 'video'}.mp4`;
-            const thumb = data.result.thumbnail
+        if (data && data.dlink) {
+            const downloadUrl = data.dlink;
+            const filename = `${data.title || 'video'}.mp4`;
+            const thumb = data.thumbnail;
             await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${filename}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb) }, { quoted: m })
             //await conn.sendFile(m.chat, downloadUrl, filename, `Title: ${data.result.title}\nCreator: ${data.result.creator}`, m);
         } else {
