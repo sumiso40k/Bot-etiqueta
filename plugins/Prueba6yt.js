@@ -8,14 +8,16 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
     try {
         await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m);
 
-        const apiUrl = `https://api-airi.vercel.app/ytmp4?url=${encodeURIComponent(args[0])}`;
+        const apiUrl = `https://api-airi.vercel.app/ytvmp4?url=${encodeURIComponent(args[0])}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
         if (data.result && data.result.downloadUrl) {
             const downloadUrl = data.result.hd || data.result.sd || data.result.downloadUrl;
             const filename = `${data.result.title || 'video'}.mp4`;
-            await conn.sendFile(m.chat, downloadUrl, filename, `Title: ${data.result.title}\nCreator: ${data.result.creator}`, m);
+            const thumb = data.result.thumbnail
+            await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${filename}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb) }, { quoted: m })
+            //await conn.sendFile(m.chat, downloadUrl, filename, `Title: ${data.result.title}\nCreator: ${data.result.creator}`, m);
         } else {
             throw new Error('_*[ ❌ ] Ocurrió un error al descargar el video*_');
         }
