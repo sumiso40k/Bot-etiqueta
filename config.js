@@ -68,7 +68,7 @@ global.APIKeys = {'https://api.xteam.xyz': `${keysxteam}`,
 'https://api-xcoders.site': 'Frieren' }
 
 global.mods = [] 
-global.cheerio = load
+global.cheerio = cheerio
 global.fs = fs
 global.fetch = fetch
 global.axios = axios
