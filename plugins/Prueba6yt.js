@@ -13,8 +13,8 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
 
     try {
         let dat = await fg.ytv('https://youtube.com/watch?v=dhYOPzcsbGM')
-    
-        await conn.reply(m.chat, dat, m);
+    m.reply(dat)
+        //await conn.reply(m.chat, dat, m);
 
         const apiUrl = `https://anydl.guruapi.tech/ytdl/v2/ytmp4?url=${encodeURIComponent(args[0])}`;
         const response = await fetch(apiUrl);
