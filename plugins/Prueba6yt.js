@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
+import fg from 'api-dylux';
 import { pipeline } from 'stream';
 import { promisify } from 'util';
 
@@ -11,7 +12,9 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
     }
 
     try {
-        await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m);
+        let dat = await fg.ytv('https://youtube.com/watch?v=dhYOPzcsbGM')
+    
+        await conn.reply(m.chat, dat, m);
 
         const apiUrl = `https://anydl.guruapi.tech/ytdl/v2/ytmp4?url=${encodeURIComponent(args[0])}`;
         const response = await fetch(apiUrl);
