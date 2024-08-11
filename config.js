@@ -3,7 +3,8 @@ import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 import fs from 'fs' 
 //import * as cheerio from 'cheerio';
-import cheerio from 'cheerio'
+//import cheerio from 'cheerio'
+import { load } from 'cheerio';
 import fetch from 'node-fetch'
 import axios from 'axios' 
 import moment from 'moment-timezone'
