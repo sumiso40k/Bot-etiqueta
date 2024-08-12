@@ -1,4 +1,40 @@
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
+import fetch from 'node-fetch';
+
+const handler = async (m, { conn, args, command, usedPrefix }) => {
+    if (!args[0]) {
+        return conn.reply(m.chat, `_*[ ⚠️ ] Agrega un enlace de Youtube*_`, m);
+    }
+
+    try {
+        await conn.reply(m.chat, `_*[ ⏳ ] Descargando video...*_`, m);
+
+        const apiUrl = `https://deliriusapi-official.vercel.app/download/ytmp4?url=${encodeURIComponent(args[0])}`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (data.data && data.data.download.url) {
+            const downloadUrl = data.data.download.url;
+            const filename = `${data.data.title || 'video'}.mp4`;
+            const thumb = data.data.image;
+            await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${filename}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb) }, { quoted: m })
+            //await conn.sendFile(m.chat, downloadUrl, filename, `Titulo: ${filename}`, m);
+        } else {
+            throw new Error('_*[ ❌ ] Ocurrió un error al descargar el video*_');
+        }
+    } catch (err) {
+        console.error(err);
+        await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el video, inténtalo más tarde*_`, m);
+    }
+};
+
+handler.command = ['ytv', 'ytmp4'];
+export default handler;
+              
+
+
+
+
+/*import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
 import fetch from 'node-fetch'
 import yts from 'yt-search'
 import ytdl from 'ytdl-core'
@@ -111,3 +147,4 @@ let random = url[0];
 let getVideo = await ytMp4(random);
 resolve(getVideo)}).catch(reject)})};
   
+*/
