@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 import fs from 'fs' 
 
-//import cheerio from 'cheerio'
+import cheerio from 'cheerio'
 
 import fetch from 'node-fetch'
 import axios from 'axios' 
@@ -68,7 +68,7 @@ global.APIKeys = {'https://api.xteam.xyz': `${keysxteam}`,
 'https://api-xcoders.site': 'Frieren' }
 
 global.mods = [] 
-//global.cheerio = cheerio
+global.cheerio = cheerio
 global.fs = fs
 global.fetch = fetch
 global.axios = axios
