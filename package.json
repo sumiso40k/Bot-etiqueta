@@ -39,7 +39,7 @@
     "dependencies": {
         "@whiskeysockets/baileys": "npm:@whiskeysockets/baileys@6.7.2",
         "@adiwajshing/keyed-db": "^0.2.4",
-        "@bochilteam/scraper": "git+https://github.com/eabdalmufid/scraper.git",
+        "@bochilteam/scraper": "git+https://github.com/eabdalmufid/scraper.git#master",
         "@brandond/findthelyrics": "^2.0.5",
         "@sasmeee/igdl": "npm:@sasmeee/igdl",
         "body-parser": "^1.20.2",
