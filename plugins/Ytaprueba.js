@@ -27,7 +27,8 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
   // Crear la URL corta con la ID del video
   const shortYoutubeUrl = `https://youtu.be/${videoId}`;
 
-  conn.reply(m.chat, `_*[ ⏳ ] Descargando el audio...*_\n${shortYoutubeUrl}`, m);
+  //conn.reply(m.chat, `_*[ ⏳ ] Descargando el audio...*_\n${shortYoutubeUrl}`, m);
+  conn.reply(m.chat, shortYoutubeUrl, m);
 
   try {
     let q = '128kbps';
