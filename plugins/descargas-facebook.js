@@ -25,17 +25,17 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
             const videoUrl = json.urls[0].hd || json.urls[1]?.sd || '';
             
             if (videoUrl) {
-                // Descargar el archivo localmente en la carpeta temporal /tmp
+                
                 const videoResponse = await fetch(videoUrl);
                 const videoBuffer = await videoResponse.buffer();
                 const videoPath = path.join('/tmp', 'video.mp4');
                 
                 fs.writeFileSync(videoPath, videoBuffer);
                 
-                // Luego enviar el archivo descargado
+                
                 await conn.sendFile(m.chat, videoPath, 'video.mp4', `_*☑️ ${json.title}*_`, m);
 
-                // Eliminar el archivo local después de enviarlo
+                
                 fs.unlinkSync(videoPath);
             } else {
                 throw new Error("No se encontró URL del video");
