@@ -1,4 +1,5 @@
 
+
 import fetch from 'node-fetch';
 
 const handler = async (m, {conn, args, command, usedPrefix}) => {
@@ -11,11 +12,20 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
         await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m);
 
         const response = await fetch(`https://deliriusapi-official.vercel.app/download/facebook?url=${encodeURIComponent(args[0])}`);
+
+        // Verificar que la respuesta sea correcta
+        if (!response.ok) {
+            throw new Error(`Error en la respuesta de la API: ${response.statusText}`);
+        }
+
         const json = await response.json();
-    
+        
+        // Debug: Imprimir la respuesta JSON
+        console.log(json);
+
         if (json && json.urls && json.urls.length > 0) {
             const videoUrl = json.urls[0].hd || json.urls[1]?.sd || '';
-        
+
             if (videoUrl) {
                 await conn.sendFile(m.chat, videoUrl, 'video.mp4', `_*☑️ ${json.title}*_`, m);
             } else {
@@ -26,12 +36,14 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
         }
     } catch (err) {
         await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el video, inténtalo más tarde*_`, m);
-        console.error(`Error en el comando .fb`, err);
+        console.error(`Error en el comando .fb:`, err);
     }
 };
 
 handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
 export default handler;
+
+
 
 /*
 import fg from 'api-dylux';
