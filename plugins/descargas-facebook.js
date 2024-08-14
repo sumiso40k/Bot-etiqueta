@@ -1,33 +1,42 @@
 
 
 import fetch from 'node-fetch';
+import fs from 'fs';
+import path from 'path';
 
-const handler = async (m, {conn, args, command, usedPrefix}) => {
-
-    if (!args[0]) return await conn.reply(m.chat,  `_*[ ⚠️ ] Agrega el enlace de un video de Facebook*_\n\n> Ejemplo:\n_.fb https://www.facebook.com/_`, m);
+const handler = async (m, { conn, args, command, usedPrefix }) => {
+    if (!args[0]) return await conn.reply(m.chat, `_*[ ⚠️ ] Agrega el enlace de un video de Facebook*_\n\n> Ejemplo:\n_.fb https://www.facebook.com/_`, m);
 
     if (!args[0].match(/www.facebook.com|fb.watch/g)) return await conn.reply(m.chat, `_*[ ⚠️ ] El enlace no es de Facebook*_`, m);
 
-    try { 
+    try {
         await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m);
 
         const response = await fetch(`https://deliriusapi-official.vercel.app/download/facebook?url=${encodeURIComponent(args[0])}`);
-
-        // Verificar que la respuesta sea correcta
+        
         if (!response.ok) {
             throw new Error(`Error en la respuesta de la API: ${response.statusText}`);
         }
 
         const json = await response.json();
-        
-        // Debug: Imprimir la respuesta JSON
         console.log(json);
 
         if (json && json.urls && json.urls.length > 0) {
             const videoUrl = json.urls[0].hd || json.urls[1]?.sd || '';
-
+            
             if (videoUrl) {
-                await conn.sendFile(m.chat, videoUrl, 'video.mp4', `_*☑️ ${json.title}*_`, m);
+                // Descargar el archivo localmente en la carpeta temporal /tmp
+                const videoResponse = await fetch(videoUrl);
+                const videoBuffer = await videoResponse.buffer();
+                const videoPath = path.join('/tmp', 'video.mp4');
+                
+                fs.writeFileSync(videoPath, videoBuffer);
+                
+                // Luego enviar el archivo descargado
+                await conn.sendFile(m.chat, videoPath, 'video.mp4', `_*☑️ ${json.title}*_`, m);
+
+                // Eliminar el archivo local después de enviarlo
+                fs.unlinkSync(videoPath);
             } else {
                 throw new Error("No se encontró URL del video");
             }
