@@ -23,7 +23,7 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
         }
     } catch (err) {
         console.error(err);
-        await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el video, inténtalo más tarde*_`, m);
+        await conn.reply(m.chat, err, m);
     }
 };
 
