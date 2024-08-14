@@ -1,35 +1,57 @@
+              
+
 import fetch from 'node-fetch';
 
-const handler = async (m, { conn, args, command, usedPrefix }) => {
-    if (!args[0]) {
-        return conn.reply(m.chat, `_*[ ⚠️ ] Agrega un enlace de Youtube*_`, m);
-    }
+
+const getYoutubeId = (url) => {
+  const regex = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
+  const matches = url.match(regex);
+  return matches ? matches[1] : null;
+};
+
+let handler = async (m, { text, conn, args, usedPrefix, command }) => {
+  if (!args[0]) return await conn.reply(m.chat, '_*[ ⚠️ ] Agrega un enlace de YouTube*_\n\n> Ejemplo:\n_.ytmp4 https://www.youtube.com_', m);
+
+  let youtubeLink = '';
+
+  if (args[0].includes('you')) {
+    youtubeLink = args[0];
+  } else {
+    return await conn.reply(m.chat, '_*[ ⚠️ ] El enlace no es de YouTube*_', m);
+  }
+
+  
+  const videoId = getYoutubeId(youtubeLink);
+  
+  const shortYoutubeUrl = `https://youtu.be/${videoId}`;
+
+  conn.reply(m.chat, '_*[ ⏳ ] Descargando el video...*_', m);
+
 
     try {
-        await conn.reply(m.chat, `_*[ ⏳ ] Descargando video...*_`, m);
+      
+      let deliriusResponse = await fetch(`https://deliriusapi-official.vercel.app/download/ytmp4?url=${shortYoutubeUrl}`);
 
-        const apiUrl = `https://deliriusapi-official.vercel.app/download/ytmp4?url=${encodeURIComponent(args[0])}`;
-        const response = await fetch(apiUrl);
-        const data = await response.json();
+      
+      let deliriusData = await deliriusResponse.json().catch(() => {
+        console.log('La respuesta no es un JSON válido');
+      });
+      
+      if (!deliriusData.status) console.log('Ocurrió un rror en la API');
 
-        if (data.data && data.data.download.url) {
-            const downloadUrl = data.data.download.url;
-            const filename = `${data.data.title || 'video'}.mp4`;
-            const thumb = data.data.image;
-            //await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${filename}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb) }, { quoted: m })
-            await conn.sendFile(m.chat, downloadUrl, filename, `Titulo: ${filename}`, m);
-        } else {
-            throw new Error('_*[ ❌ ] Ocurrió un error al descargar el video*_');
-        }
-    } catch (err) {
-        console.error(err);
-        await conn.reply(m.chat, err, m);
+      let downloadUrl = deliriusData.data.download.url;
+      let title = deliriusData.data.title || 'video';
+
+      await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${title}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`}, { quoted: m });
+    } catch (err1) {
+      await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
+         //thumbnail: await fetch(n4)
     }
 };
 
-handler.command = ['ytv', 'ytmp4'];
+
+handler.command = ['ytmp4', 'ytv'];
 export default handler;
-              
 
 
 
