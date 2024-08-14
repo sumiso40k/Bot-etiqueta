@@ -27,7 +27,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
   // Crear la URL corta con la ID del video
   const shortYoutubeUrl = `https://youtu.be/${videoId}`;
 
-  //conn.reply(m.chat, `_*[ ⏳ ] Descargando el audio...*_\n${shortYoutubeUrl}`, m);
+  //conn.reply(m.chat, '_*[ ⏳ ] Descargando el audio...*_', m);
   conn.reply(m.chat, shortYoutubeUrl, m);
 
   try {
@@ -67,10 +67,24 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
         await conn.sendMessage(m.chat, { audio: { url: ress.url }, fileName: __res[0].title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m });
       } catch (err3) {
         if (err3.message.includes('Status code: 410')) {
-          await conn.reply(m.chat, `_[ ❌ ] Error al descargar con ytdl-core: El video ya no está disponible (Error
+          await conn.reply(m.chat, `_[ ❌ ] Error al descargar con ytdl-core: El video ya no está disponible (Error 410)._`, m);
+        } else {
+          await conn.reply(m.chat, `_[ ❌ ] Error al descargar con ytdl-core: ${err3.message}_`, m);
+        }
+      }
+    }
+  }
+};
+
+handler.command = ['ytmp3', 'yta'];
+export default handler;
 
 
-/*import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
+
+
+
+/*
+import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 import fetch from 'node-fetch';
 import yts from 'yt-search';
 import ytdl from 'ytdl-core';
