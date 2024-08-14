@@ -16,8 +16,8 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
             const downloadUrl = data.data.download.url;
             const filename = `${data.data.title || 'video'}.mp4`;
             const thumb = data.data.image;
-            await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${filename}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb) }, { quoted: m })
-            //await conn.sendFile(m.chat, downloadUrl, filename, `Titulo: ${filename}`, m);
+            //await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${filename}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb) }, { quoted: m })
+            await conn.sendFile(m.chat, downloadUrl, filename, `Titulo: ${filename}`, m);
         } else {
             throw new Error('_*[ ❌ ] Ocurrió un error al descargar el video*_');
         }
