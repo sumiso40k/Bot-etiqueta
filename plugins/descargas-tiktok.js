@@ -1,6 +1,7 @@
 import fg from 'api-dylux'; 
 import axios from 'axios';
-import cheerio from 'cheerio';
+//import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import { tiktok } from "@xct007/frieren-scraper";
 // let generateWAMessageFromContent = (await import(global.baileys)).default
 import { tiktokdl } from '@bochilteam/scraper';
