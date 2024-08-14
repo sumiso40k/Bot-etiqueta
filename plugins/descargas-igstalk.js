@@ -1,5 +1,5 @@
 import axios from 'axios'
-import cheerio from 'cheerio'
+import * as cheerio from 'cheerio';
 import fetch from 'node-fetch'
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 if (!args[0]) conn.reply(m.chat,      `${lenguajeGB['smsAvisoMG']()}𝙄𝙣𝙜𝙧𝙚𝙨𝙚 𝙚𝙡 𝙪𝙨𝙪𝙖𝙧𝙞𝙤 𝙙𝙚 𝙖𝙡𝙜𝙪𝙞𝙚𝙣 𝙙𝙚 𝙄𝙂\n𝙀𝙟:\n*${usedPrefix + command} gatadios*`, m, {contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, body: ' 🚫𝐍𝐨 𝐇𝐚𝐠𝐚 𝐬𝐩𝐚𝐦 ', previewType: 0, thumbnail: img.getRandom(), sourceUrl: redes.getRandom()}}})
