@@ -27,8 +27,8 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
   // Crear la URL corta con la ID del video
   const shortYoutubeUrl = `https://youtu.be/${videoId}`;
 
-  //conn.reply(m.chat, '_*[ ⏳ ] Descargando el audio...*_', m);
-  conn.reply(m.chat, shortYoutubeUrl, m);
+  conn.reply(m.chat, '_*[ ⏳ ] Descargando el audio...*_', m);
+  //conn.reply(m.chat, shortYoutubeUrl, m);
 
   try {
     let q = '128kbps';
@@ -39,7 +39,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
     const size = await yt.audio[q].fileSizeH;
     await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' });
   } catch (err1) {
-    await conn.reply(m.chat, `_[ ❌ ] Error al descargar con bochilteam/scraper: ${err1.message}_`, m);
+    //await conn.reply(m.chat, `_[ ❌ ] Error al descargar con bochilteam/scraper: ${err1.message}_`, m);
 
     try {
       // Solicitud a DeliriusAPI con la URL corta
