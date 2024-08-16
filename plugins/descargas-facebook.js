@@ -10,12 +10,12 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
     if (!args[0].match(/www.facebook.com|fb.watch/g)) return await conn.reply(m.chat, `_*[ ⚠️ ] El enlace no es de Facebook*_`, m);
 
     try {
-        await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m);
+        await conn.reply(m.chat, `_*[ ⏳ ] Descargando video...*_`, m);
 
         const response = await fetch(`https://deliriusapi-official.vercel.app/download/facebook?url=${encodeURIComponent(args[0])}`);
         
         if (!response.ok) {
-            throw new Error(`Error en la respuesta de la API: ${response.statusText}`);
+            //throw new Error(`Error en la respuesta de la API: ${response.statusText}`);
         }
 
         const json = await response.json();
