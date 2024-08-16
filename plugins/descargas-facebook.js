@@ -15,6 +15,68 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
         const response = await fetch(`https://deliriusapi-official.vercel.app/download/facebook?url=${encodeURIComponent(args[0])}`);
         
         if (!response.ok) {
+            throw new Error(`Error en la respuesta de la API: ${response.statusText}`);
+        }
+
+        const json = await response.json();
+        console.log(JSON.stringify(json, null, 2));
+
+        if (json && json.urls && json.urls.length > 0) {
+            const videoUrl = json.urls[0].hd || json.urls[1]?.sd || '';
+            
+            if (videoUrl) {
+                const videoResponse = await fetch(videoUrl);
+                if (!videoResponse.ok) {
+                    throw new Error(`Error al obtener el video: ${videoResponse.statusText}`);
+                }
+
+                const videoPath = path.join('/tmp', 'video.mp4');
+                const fileStream = fs.createWriteStream(videoPath);
+
+                await new Promise((resolve, reject) => {
+                    videoResponse.body.pipe(fileStream);
+                    videoResponse.body.on('error', reject);
+                    fileStream.on('finish', resolve);
+                });
+
+                console.log(`Video descargado en: ${videoPath}`);
+
+                await conn.sendFile(m.chat, videoPath, 'video.mp4', `_*☑️ ${json.title}*_`, m);
+
+                fs.unlinkSync(videoPath); // Elimina el archivo después de enviarlo
+            } else {
+                throw new Error("No se encontró URL del video");
+            }
+        } else {
+            throw new Error("Respuesta inválida de la API");
+        }
+    } catch (err) {
+        await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el video, inténtalo más tarde*_`, m);
+        console.error(`Error en el comando .fb:`, err);
+    }
+};
+
+handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
+export default handler;
+
+
+
+/*
+import fetch from 'node-fetch';
+import fs from 'fs';
+import path from 'path';
+
+const handler = async (m, { conn, args, command, usedPrefix }) => {
+    if (!args[0]) return await conn.reply(m.chat, `_*[ ⚠️ ] Agrega el enlace de un video de Facebook*_\n\n> Ejemplo:\n_.fb https://www.facebook.com/_`, m);
+
+    if (!args[0].match(/www.facebook.com|fb.watch/g)) return await conn.reply(m.chat, `_*[ ⚠️ ] El enlace no es de Facebook*_`, m);
+
+    try {
+        await conn.reply(m.chat, `_*[ ⏳ ] Descargando video...*_`, m);
+
+        const response = await fetch(`https://deliriusapi-official.vercel.app/download/facebook?url=${encodeURIComponent(args[0])}`);
+        
+        if (!response.ok) {
             //throw new Error(`Error en la respuesta de la API: ${response.statusText}`);
         }
 
@@ -51,7 +113,7 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
 
 handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
 export default handler;
-
+*/
 
 
 /*
