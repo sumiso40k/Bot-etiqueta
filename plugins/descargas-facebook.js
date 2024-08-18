@@ -1,4 +1,68 @@
+
+import { pipeline } from 'stream';
+import { promisify } from 'util';
+import fs from 'fs';
 import fetch from 'node-fetch';
+
+const streamPipeline = promisify(pipeline);
+
+const handler = async (m, {conn, args, command, usedPrefix}) => {
+
+    if (!args[0]) return await conn.reply(m.chat,  `_*[ ⚠️ ] Agrega el enlace de un video de Facebook*_\n\n> Ejemplo:\n_.fb https://www.facebook.com/_`, m);
+
+    if (!args[0].match(/www.facebook.com|fb.watch/g)) return await conn.reply(m.chat, `_*[ ⚠️ ] El enlace no es de Facebook*_`, m);
+
+    try { 
+        await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m);
+
+        const response = await fetch(`https://deliriusapi-official.vercel.app/download/facebook?url=${encodeURIComponent(args[0])}`);
+
+        if (!response.ok) {
+            throw new Error(`Error en la API: ${response.status} ${response.statusText}`);
+        }
+
+        const json = await response.json();
+        console.log('API Response:', JSON.stringify(json, null, 2));
+
+        if (json && json.urls && json.urls.length > 0) {
+            const videoUrl = json.urls[0]?.hd || json.urls[0]?.sd || json.urls[1]?.hd || json.urls[1]?.sd || '';
+            console.log('Video URL:', videoUrl);
+
+            if (videoUrl) {
+                const videoResponse = await fetch(videoUrl);
+
+                if (!videoResponse.ok) {
+                    throw new Error(`Error al descargar el video: ${videoResponse.status} ${videoResponse.statusText}`);
+                }
+
+                // Usa un stream para manejar el archivo
+                const tempFilePath = `/tmp/${Date.now()}.mp4`;
+                await streamPipeline(videoResponse.body, fs.createWriteStream(tempFilePath));
+
+                // Envía el video después de descargarlo completamente
+                await conn.sendFile(m.chat, tempFilePath, 'video.mp4', `_*☑️ ${json.title}*_`, m);
+
+                // Elimina el archivo temporal después de enviarlo
+                fs.unlinkSync(tempFilePath);
+
+            } else {
+                throw new Error("No se encontró URL del video");
+            }
+        } else {
+            throw new Error("Respuesta inválida de la API");
+        }
+    } catch (err) {
+        await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el video, inténtalo más tarde*_`, m);
+        console.error(`Error en el comando .fb`, err);
+        console.error('Detalles del error:', err.message || err.toString());
+    }
+};
+
+handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
+export default handler;
+
+
+/*import fetch from 'node-fetch';
 
 const handler = async (m, {conn, args, command, usedPrefix}) => {
 
@@ -42,7 +106,7 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
 
 handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
 export default handler;
-
+*/
 
 
 
