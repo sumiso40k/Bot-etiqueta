@@ -18,9 +18,10 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
             const videoUrl = json.urls[0].hd || json.urls[1]?.sd || '';
         
             if (videoUrl) {
+                
                 //conn.sendMessage(m.chat, {video: {url: videoUrl}, filename: 'error.mp4', caption: `_*☑️ Video de Facebook*_`}, {quoted: m});
-                //await conn.sendFile(m.chat, videoUrl, 'video.mp4', `_*☑️ ${json.title}*_`, m);
-                await conn.sendFile(m.chat, videoUrl, 'error.mp4', null, m)
+                await conn.sendFile(m.chat, videoUrl, 'video.mp4', `_*☑️ ${videoUrl}*_`, m);
+                //await conn.sendFile(m.chat, videoUrl, 'error.mp4', null, m)
             } else {
                 throw new Error("No se encontró URL del video");
             }
