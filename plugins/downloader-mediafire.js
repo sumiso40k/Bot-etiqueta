@@ -26,7 +26,7 @@ try {
     
 }}}
 handler.command = /^(mediafire|mediafiredl|dlmediafire)$/i
-handler.register = true
+
 //handler.limit = 3
 export default handler;
 
