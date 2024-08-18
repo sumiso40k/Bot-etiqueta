@@ -1,5 +1,52 @@
+import fetch from 'node-fetch';
+
+const handler = async (m, {conn, args, command, usedPrefix}) => {
+
+    if (!args[0]) return await conn.reply(m.chat,  `_*[ ⚠️ ] Agrega el enlace de un video de Facebook*_\n\n> Ejemplo:\n_.fb https://www.facebook.com/_`, m);
+
+    if (!args[0].match(/www.facebook.com|fb.watch/g)) return await conn.reply(m.chat, `_*[ ⚠️ ] El enlace no es de Facebook*_`, m);
+
+    try { 
+        await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m);
+
+        const response = await fetch(`https://deliriusapi-official.vercel.app/download/facebook?url=${encodeURIComponent(args[0])}`);
+        const json = await response.json();
+        
+        console.log('API Response:', json);  // Verifica la respuesta completa de la API
+        
+        if (json && json.urls && json.urls.length > 0) {
+            const videoUrl = json.urls[0]?.hd || json.urls[1]?.sd || json.urls[0]?.sd || '';
+            
+            console.log('Video URL:', videoUrl);  // Verifica la URL del video
+            
+            if (videoUrl) {
+                const videoResponse = await fetch(videoUrl);
+                const videoBuffer = await videoResponse.buffer();
+
+                if (videoBuffer.length > 0) {
+                    await conn.sendMessage(m.chat, { video: videoBuffer, caption: `_*☑️ ${json.title}*_` }, { quoted: m });
+                } else {
+                    throw new Error("No se pudo descargar el video");
+                }
+            } else {
+                throw new Error("No se encontró URL del video");
+            }
+        } else {
+            throw new Error("Respuesta inválida de la API");
+        }
+    } catch (err) {
+        await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el video, inténtalo más tarde*_`, m);
+        console.error(`Error en el comando .fb`, err);
+    }
+};
+
+handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
+export default handler;
 
 
+
+
+/*
 import fetch from 'node-fetch';
 
 const handler = async (m, {conn, args, command, usedPrefix}) => {
@@ -37,7 +84,7 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
 
 handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
 export default handler;
-
+*/
 
 
 
