@@ -1,5 +1,5 @@
               
-
+/*
 import fetch from 'node-fetch';
 
 
@@ -52,10 +52,10 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
 
 handler.command = ['ytmp4', 'ytv'];
 export default handler;
+*/
 
 
 
-/*
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
 import fetch from 'node-fetch'
 import yts from 'yt-search'
@@ -169,4 +169,4 @@ let random = url[0];
 let getVideo = await ytMp4(random);
 resolve(getVideo)}).catch(reject)})};
   
-*/
+
