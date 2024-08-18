@@ -15,7 +15,8 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
         const json = await response.json();
     
         if (json && json.urls && json.urls.length > 0) {
-            const videoUrl = json.urls[0].hd || json.urls[1]?.sd || '';
+            //const videoUrl = json.urls[0].hd || json.urls[1]?.sd || '';
+            const videoUrl = json.urls.sd;
         
             if (videoUrl) {
                 
