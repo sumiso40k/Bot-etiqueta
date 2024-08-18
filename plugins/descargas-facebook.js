@@ -1,4 +1,4 @@
-
+/*
 import { pipeline } from 'stream';
 import { promisify } from 'util';
 import fs from 'fs';
@@ -60,7 +60,7 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
 
 handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
 export default handler;
-
+*/
 
 /*import fetch from 'node-fetch';
 
