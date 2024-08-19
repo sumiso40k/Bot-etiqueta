@@ -1,5 +1,5 @@
 
-
+/*
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
 import fetch from 'node-fetch'
 import yts from 'yt-search'
@@ -120,12 +120,12 @@ for (let i = 0; i < result.length; i++) { url.push(result[i].url) }
 let random = url[0];
 let getVideo = await ytMp4(random);
 resolve(getVideo)}).catch(reject)})};
+*/
 
 
 
 
 
-/*
 import fetch from 'node-fetch';
 
 
@@ -169,6 +169,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
       let title = deliriusData.data.title || 'video';
 
       await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${title}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`}, { quoted: m });
+      //await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  ${wm}  ❱━⬣\n┃ 💜 ${mid.smsYT1}\n┃ ${n}\n╰━━━━━❰ *𓃠 ${vs}* ❱━━━━⬣`, thumbnail: await fetch(n4) }, { quoted: m })
     } catch (err1) {
       await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
          //thumbnail: await fetch(n4)
@@ -178,7 +179,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
 
 handler.command = ['ytmp4', 'ytv'];
 export default handler;
-*/
+
 
 
 /*
