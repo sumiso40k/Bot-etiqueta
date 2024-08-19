@@ -15,12 +15,12 @@ try{
 const responseIg = await axios.get(`https://deliriusapi-official.vercel.app/download/instagram?url=${args[0]}`);
 const resultlIg = responseIg.data;
 let linkig=resultlIg.data[0].url
-await conn.sendFile(m.chat,linkig, 'error.mp4', `${wm}`, m);
+await conn.sendFile(m.chat,linkig, 'error.mp4', `${wm} 1`, m);
 }catch{
 try{
 const resultD = await instagramDl(args[0]);
 const linkD=resultD[0].download_link
-await conn.sendFile(m.chat, linkD, 'error.mp4', `${wm}`, m);
+await conn.sendFile(m.chat, linkD, 'error.mp4', `${wm} 2`, m);
 await conn.sendMessage(m.chat, {text: waittttt, edit: key})
 } catch{
 try {
