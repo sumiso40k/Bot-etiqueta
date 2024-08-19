@@ -473,7 +473,7 @@ await clearTmp()
   //const pinkAiri = customChalk.hex('#E991E6');
   
 //console.log(chalk.bold.orchid('Este texto debería ser rosa.'));
-  console.log(`chalk.bold.green('\n╭━❬ ✤ Airi-Bot ✤ ❭━╮') + chalk.bold.green('\n│') + chalk.bold.green('ARCHIVOS DE LA CARPETA TMP ELIMINADOS') + chalk.bold.green('\n╰━➤')`)
+  console.log(`╭━❬ ✤ Airi-Bot ✤ ❭━╮\nARCHIVOS DE LA CARPETA TMP ELIMINADOS\n╰━➤`)
 }, 1000 * 60 * 3) // 3 min
 
 //setInterval(async () => {
