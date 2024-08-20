@@ -12,7 +12,7 @@ let handler = async (m, { conn, text, command }) => {
                 data = await ytmp4(text);
                 break;
             case 'ytmp4v2':
-                data = await ytmp4v2(text);
+                data = await ytmp4v22(text);
                 break;
             case 'ytmp4v3':
                 data = await ytmp4v3(text);
@@ -33,6 +33,6 @@ let handler = async (m, { conn, text, command }) => {
 }
 
 // Define los comandos para cada versión
-handler.command = /^(ytmp4v1|ytmp4v2|ytmp4v3|ytmp4v4)$/i;
+handler.command = /^(ytmp4v1|ytmp4v22|ytmp4v3|ytmp4v4)$/i;
 
 export default handler;
