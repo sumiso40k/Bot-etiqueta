@@ -11,15 +11,15 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
     try { 
         
 
-        /*
+        
         const response = await axios.get(`https://deliriusapi-official.vercel.app/download/facebook`, {
             params: {
                 url: encodeURIComponent(args[0])
             }
         });
-        */
         
-        const response = await axios.get(`https://deliriusapi-official.vercel.app/download/instagram?url=${args[0]}`);
+        
+        //const response = await axios.get(`https://deliriusapi-official.vercel.app/download/instagram?url=${args[0]}`);
         const result = response.data;
         const dlink = result.urls[0].hd || result.urls[1]?.sd || '';
         await conn.sendFile(m.chat, dlink, 'error.mp4', `${wm} 1`, m);
