@@ -1,34 +1,43 @@
-import axios from 'axios';
 
-const handler = async (m, {conn, args, command, usedPrefix}) => {
+ import { igdl } from 'ruhend-scraper';
 
-    if (!args[0]) return await conn.reply(m.chat,  `_*[ ⚠️ ] Agrega el enlace de un video de Facebook*_\n\n> Ejemplo:\n_.fb https://www.facebook.com/_`, m);
+const handler = async (m, { text, conn, args, usedPrefix, command }) => {
+  if (!args[0]) {
+    return conn.reply(m.chat, 'Ingresa Un Link De Facebook', m);
+  }
 
-    if (!args[0].match(/www.facebook.com|fb.watch/g)) return await conn.reply(m.chat, `_*[ ⚠️ ] El enlace no es de Facebook*_`, m);
+  let res;
+  try {
+    res = await igdl(args[0]);
+  } catch (error) {
+    return conn.reply(m.chat, 'Error al obtener datos. Verifica el enlace.', m);
+  }
 
-    await conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m);
-    
-    try { 
-        
+  let result = res.data;
+  if (!result || result.length === 0) {
+    return conn.reply(m.chat, 'No se encontraron resultados.', m);
+  }
 
-        
-        const response = await axios.get(`https://deliriusapi-official.vercel.app/download/facebook`, {
-            params: {
-                url: encodeURIComponent(args[0])
-            }
-        });
-        
-        
-        //const response = await axios.get(`https://deliriusapi-official.vercel.app/download/instagram?url=${args[0]}`);
-        const result = response.data;
-        const dlink = result.urls[0].hd || result.urls[1]?.sd || '';
-        await conn.sendFile(m.chat, dlink, 'error.mp4', `${wm} 1`, m);
-        
-    } catch (err) {
-        await conn.reply(m.chat, `_*[ ❌ ] Ocurrió un error al descargar el video, inténtalo más tarde*_`, m);
-        console.error(`Error en el comando .fb`, err);
-    }
+  let data;
+  try {
+    data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)");
+  } catch (error) {
+    return conn.reply(m.chat, 'Error al procesar los datos.', m);
+  }
+
+  if (!data) {
+    return conn.reply(m.chat, 'No se encontró una resolución adecuada.', m);
+  }
+
+  let video = data.url;
+  try {
+    await conn.sendMessage(m.chat, { video: { url: video }, caption: null, fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m });
+  } catch (error) {
+    return conn.reply(m.chat, 'Error al enviar el video.', m);
+  }
 };
 
-handler.command = ['fb', 'fbdl', 'facebook', 'facebookdl'];
-export default handler;
+handler.command = ['fb', 'fbdl'];
+
+export default handler;       
+                      
