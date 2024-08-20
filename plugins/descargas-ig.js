@@ -1,4 +1,39 @@
 
+
+
+import axios from 'axios';
+
+const handler = async (m, {conn, args, command, usedPrefix}) => {
+    if (!args[0]) throw `\n*${usedPrefix + command} https://www.instagram.com/p/CCoI4DQBGVQ/?igshid=YmMyMTA2M2Y=*`;
+    
+    const { key } = await conn.sendMessage(m.chat, {text: wait}, {quoted: m});
+    await conn.sendMessage(m.chat, {text: waitt, edit: key});
+    await conn.sendMessage(m.chat, {text: waittt, edit: key});
+    await conn.sendMessage(m.chat, {text: waitttt, edit: key});
+    
+    try {
+        const responseIg = await axios.get(`https://deliriusapi-official.vercel.app/download/instagram?url=${args[0]}`);
+        const resultlIg = responseIg.data;
+
+        for (const item of resultlIg.data) {
+            await conn.sendFile(m.chat, item.url, `file.${item.type === 'video' ? 'mp4' : 'jpg'}`, `${wm}`, m);
+        }
+    } catch (e) {
+        conn.sendMessage(m.chat, {text: `${lenguajeGB['smsMalError3']()}#report ${lenguajeGB['smsMensError2']()} ${usedPrefix + command}\n\n${wm}`, edit: key});
+        console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`);
+        console.log(e);
+    }
+};
+
+handler.help = ['instagram <link ig>'];
+handler.tags = ['downloader'];
+handler.command = /^(instagram|ig(dl)?)$/i;
+
+export default handler;
+
+
+
+/*
 import fetch from 'node-fetch';
 import axios from 'axios';
 import instagramGetUrl from 'instagram-url-direct';
@@ -76,7 +111,7 @@ handler.command =/^(instagram|ig(dl)?)$/i
 handler.limit = 2
 handler.register = true
 export default handler
-
+*/
 
 
 /*import fetch from 'node-fetch';
