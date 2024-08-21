@@ -11,8 +11,8 @@ let handler = async (m, { conn, text, command }) => {
             case 'ytmp4v1':
                 data = await ytmp4(text);
                 break;
-            case 'ytmp4v2':
-                data = await ytmp4v22(text);
+            case 'ytmp4v22':
+                data = await ytmp4v2(text);
                 break;
             case 'ytmp4v3':
                 data = await ytmp4v3(text);
