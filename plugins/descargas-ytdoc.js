@@ -14,7 +14,8 @@ const handler = async (m, {conn, args}) => {
     const ttl = await yt.title;
     const size = await yt.video[q].fileSizeH;
     const cap = `${ttl}\n${size} 🐙`.trim();
-    await await conn.sendMessage(m.chat, {document: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
+    //await await conn.sendMessage(m.chat, {document: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
+    await await conn.sendMessage(m.chat, {video: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
   } catch {
     try {
       const lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${args[0]}`);
