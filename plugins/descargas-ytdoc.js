@@ -13,9 +13,9 @@ const handler = async (m, {conn, args}) => {
     const dl_url = await yt.video[q].download();
     const ttl = await yt.title;
     const size = await yt.video[q].fileSizeH;
-    const cap = `${ttl}\n${size} 🐙`.trim();
-    //await await conn.sendMessage(m.chat, {document: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
-    await await conn.sendMessage(m.chat, {video: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
+    const cap = `${ttl}`.trim();
+    await await conn.sendMessage(m.chat, {document: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
+    //await await conn.sendMessage(m.chat, {video: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
   } catch {
     try {
       const lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${args[0]}`);
@@ -23,12 +23,12 @@ const handler = async (m, {conn, args}) => {
       const n = lolh.result.title || 'error';
       const n2 = lolh.result.link;
       const n3 = lolh.result.size;
-      const cap2 = `${n}\n ${n3} 🐼`.trim();
+      const cap2 = `${n}`.trim();
       await conn.sendMessage(m.chat, {document: {url: n2}, caption: cap2, mimetype: 'video/mp4', fileName: n + `.mp4`}, {quoted: m});
     } catch {
-      await conn.reply(m.chat, 'no se pudo descargar', m);
+      await conn.reply(m.chat, 'No se pudo descargar', m);
     }
   }
 };
-handler.command = /^ytmp4doc|ytvdoc|ytmp4.2|ytv.2$/i;
+handler.command = ['ytvdoc', 'ytmp4doc'];
 export default handler;
