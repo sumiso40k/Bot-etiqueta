@@ -4,13 +4,9 @@
 import axios from 'axios';
 
 const handler = async (m, {conn, args, command, usedPrefix}) => {
-    if (!args[0]) throw `\n*${usedPrefix + command} https://www.instagram.com/p/CCoI4DQBGVQ/?igshid=YmMyMTA2M2Y=*`;
+    if (!args[0]) return conn.reply(m.chat,`_*[ ⚠️ ] Agrega el enlace de un video o una publicación de Instagram*_\n\n> Ejemplo:\n.${command} https://www.instagram.com`, m);
     
-    const { key } = await conn.sendMessage(m.chat, {text: wait}, {quoted: m});
-    await conn.sendMessage(m.chat, {text: waitt, edit: key});
-    await conn.sendMessage(m.chat, {text: waittt, edit: key});
-    await conn.sendMessage(m.chat, {text: waitttt, edit: key});
-    
+    await conn.reply(m.chat, '_*[ ⏳ ] Descargando...*_', m);
     try {
         const responseIg = await axios.get(`https://deliriusapi-official.vercel.app/download/instagram?url=${args[0]}`);
         const resultlIg = responseIg.data;
@@ -19,7 +15,7 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
             await conn.sendFile(m.chat, item.url, `file.${item.type === 'video' ? 'mp4' : 'jpg'}`, `${wm}`, m);
         }
     } catch (e) {
-        conn.sendMessage(m.chat, {text: `${lenguajeGB['smsMalError3']()}#report ${lenguajeGB['smsMensError2']()} ${usedPrefix + command}\n\n${wm}`, edit: key});
+        conn.sendMessage(m.chat, '_*[ ❌ ] Ocurrió un error, inténtalo más tarde*_', m);
         console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`);
         console.log(e);
     }
