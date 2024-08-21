@@ -90,6 +90,6 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
 
 handler.help = ["googleimages"];
 handler.tags = ["search"];
-handler.command = ['googleimages'];
+handler.command = ['goimg', 'googleimages'];
 
 export default handler;
