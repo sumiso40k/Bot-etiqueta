@@ -13,7 +13,7 @@ const handler = async (m, {conn, args}) => {
     const dl_url = await yt.video[q].download();
     const ttl = await yt.title;
     const size = await yt.video[q].fileSizeH;
-    const cap = `${ttl}\n${size}`.trim();
+    const cap = `${ttl}\n${size} 🐙`.trim();
     await await conn.sendMessage(m.chat, {document: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
   } catch {
     try {
@@ -22,7 +22,7 @@ const handler = async (m, {conn, args}) => {
       const n = lolh.result.title || 'error';
       const n2 = lolh.result.link;
       const n3 = lolh.result.size;
-      const cap2 = `${n}\n ${n3}`.trim();
+      const cap2 = `${n}\n ${n3} 🐼`.trim();
       await conn.sendMessage(m.chat, {document: {url: n2}, caption: cap2, mimetype: 'video/mp4', fileName: n + `.mp4`}, {quoted: m});
     } catch {
       await conn.reply(m.chat, 'no se pudo descargar', m);
