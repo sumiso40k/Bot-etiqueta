@@ -1,10 +1,9 @@
 import fetch from 'node-fetch';
 import yts from 'yt-search';
-import ytdl from 'ytdl-core';
 import axios from 'axios';
-import {youtubedl, youtubedlv2} from '@bochilteam/scraper';
+
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
-if (!text) throw `${lenguajeGB['smsAvisoMG']()}${mid.smsMalused4}\n*${usedPrefix + command} Billie Eilish - Bellyache*`
+if (!text) throw `_*[ ⚠️ ] Agrega lo que quieres buscar*_`
 try { 
 const yt_play = await search(args.join(' '))
 const texto1 = `⧁ 𝙏𝙄𝙏𝙐𝙇𝙊
@@ -34,9 +33,8 @@ await conn.reply(m.chat, `❌ _*El comando #play está fallando, repórtalo al c
 
 console.log(`❌ El comando #play está fallando`)
 console.log(e)
-handler.limit = 0
 }}
-handler.command = ['play', 'play2', 'play3', 'play4']
+handler.command = ['play']
 //handler.limit = 3
 //handler.register = true 
 export default handler;
