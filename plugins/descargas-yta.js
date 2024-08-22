@@ -30,7 +30,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
 
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      let deliriusResponse = await fetch(`https://deliriusapi-official.vercel.app/download/ytmp4?url=${shortYoutubeUrl}`);
+      let deliriusResponse = await fetch(`https://deliriusapi-official.vercel.app/download/ytmp3?url=${shortYoutubeUrl}`);
       let deliriusData = await deliriusResponse.json().catch(() => {
         console.log('La respuesta no es un JSON válido');
       });
