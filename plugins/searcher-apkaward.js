@@ -26,7 +26,7 @@ let handler = async (message, { conn, text }) => {
   try {
     let imageMessages = [];
     let { data } = await axios.get(`https://api-airi.vercel.app/apkaward?query=${encodeURIComponent(text)}`);
-
+    message.reply(`${data}`);
     if (!Array.isArray(data.results) || data.results.length === 0) {
       return message.reply("_*[ ⚠️ ] No se encontraron resultados para la búsqueda*_");
     }
