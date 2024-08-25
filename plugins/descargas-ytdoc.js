@@ -81,7 +81,7 @@ if (command==='ytmp3doc'){
       let capt = `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`
       
       
-      await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: capt, mimetype: 'audio/mp4', fileName: `${title}.mp4`}, {quoted: m});
+      await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: capt, mimetype: 'audio/mp4', fileName: `${title}.mp3`}, {quoted: m});
       
       
       break;
