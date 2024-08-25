@@ -11,7 +11,7 @@ const handler = async (m, {conn, command, text, usedPrefix}) => {
         }
     
         for (var i = 0; i < data.results[0].downloadLinks.length; i++) {
-            let dlsection += `➥${data.results[0].downloadLinks[0].fileName}\n➥${data.results[0].downloadLinks[1].downloadLink}\n\n`
+            let dlsection += `➥${data.results[0].downloadLinks[0].fileName}\n➥${data.results[i].downloadLinks[i].downloadLink}\n\n`
         }
     
         console.log(dlsection);
