@@ -1,6 +1,6 @@
 
 
-/*
+
 import axios from 'axios';
 
 const handler = async (m, {conn, args, command, usedPrefix}) => {
@@ -27,10 +27,10 @@ handler.command = /^(instagram|ig(dl)?)$/i;
 
 export default handler;
 
-*/
 
 
 
+/*
 import fetch from 'node-fetch';
 import axios from 'axios';
 import instagramGetUrl from 'instagram-url-direct';
@@ -108,7 +108,7 @@ handler.command =/^(instagram|ig(dl)?)$/i
 handler.limit = 2
 handler.register = true
 export default handler
-
+*/
 
 
 /*import fetch from 'node-fetch';
