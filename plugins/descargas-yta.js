@@ -1,5 +1,5 @@
 
-
+/*
 import fetch from 'node-fetch';
 
 const getYoutubeId = (url) => {
@@ -55,9 +55,9 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
 
 handler.command = ['ytmp3', 'yta'];
 export default handler;
+*/
 
 
-/*
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper' 
 import fetch from 'node-fetch'
 import yts from 'yt-search'
@@ -107,4 +107,4 @@ try {
 
 handler.command = ['ytmp3', 'yta']
 export default handler
-*/
+
