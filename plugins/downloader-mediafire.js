@@ -31,7 +31,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
 handler.help = ['mediafire'].map(v => v + ' <url>');
 handler.tags = ['downloader'];
-handler.command = /^(mediafire|mediafiredl|dlmediafire)$/i;
+handler.command = ['mediafire2'];
 
 export default handler;
 
