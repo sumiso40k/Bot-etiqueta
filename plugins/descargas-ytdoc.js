@@ -1,4 +1,7 @@
-/*
+
+
+
+
 import fetch from 'node-fetch';
 
 const getYoutubeId = (url) => {
@@ -34,16 +37,16 @@ if (command==='ytmp4doc') {
     
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      let apiResponse = await fetch(`https://deliriusapi-official.vercel.app/download/ytmp4?url=${shortYoutubeUrl}`);
+      let apiResponse = await fetch(`https://api.eypz.c0m.in/ytdl?url=${shortYoutubeUrl}`);
       let apiData = await apiResponse.json().catch(() => {
         console.log('La respuesta no es un JSON válido');
       });
 
       if (!apiData.status) throw new Error('Ocurrió un error en la API');
 
-      let downloadUrl = apiData.data.download.url;
-      let title = apiData.data.title || 'video';
-      let image = apiData.data.image;
+      let downloadUrl = apiData.result.mp4;
+      let title = apiData.result.title || 'video';
+      let image = apiData.result.thumb;
       let capt = `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`
       
       
@@ -68,20 +71,20 @@ if (command==='ytmp3doc'){
     
     for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      let apiResponse = await fetch(`https://deliriusapi-official.vercel.app/download/ytmp4?url=${shortYoutubeUrl}`);
+      let apiResponse = await fetch(`https://api.eypz.c0m.in/ytdl?url=${shortYoutubeUrl}`);
       let apiData = await apiResponse.json().catch(() => {
         console.log('La respuesta no es un JSON válido');
       });
 
       if (!apiData.status) throw new Error('Ocurrió un error en la API');
 
-      let downloadUrl = apiData.data.download.url;
-      let title = apiData.data.title || 'video';
-      let image = apiData.data.image;
+      let downloadUrl = apiData.result.mp3;
+      let title = apiData.result.title || 'video';
+      let image = apiData.result.thumb;
       let capt = `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`
       
       
-      await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: capt, mimetype: 'audio/mp4', fileName: `${title}.mp3`}, {quoted: m});
+      await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: capt, mimetype: 'audio/mp4', fileName: `${title}.mp4`}, {quoted: m});
       
       
       break;
@@ -99,11 +102,11 @@ if (command==='ytmp3doc'){
 
 handler.command = ['ytmp4doc', 'ytmp3doc'];
 export default handler;
-      
-*/
 
 
 
+
+/*
 import {youtubedl, youtubedlv2} from '@bochilteam/scraper';
 import fetch from 'node-fetch';
 
@@ -139,3 +142,4 @@ const handler = async (m, {conn, args}) => {
 handler.command = ['ytvdoc', 'ytmp4doc'];
 export default handler;
                                
+*/
