@@ -1,13 +1,15 @@
 import axios from 'axios';
+
 const {
   generateWAMessageContent,
   generateWAMessageFromContent,
   proto
 } = (await import("@whiskeysockets/baileys"))["default"];
 
+
 let handler = async (message, { conn, text }) => {
   if (!text) {
-    return message.reply("_*[ ⚠️ ] Ingresa el texto de lo que quieres buscar en YouTube*_");
+    return message.reply("_*[ ⚠️ ] Ingresa lo que quieres buscar en YouTube*_");
   }
 
   async function createImageMessage(url) {
@@ -39,10 +41,10 @@ let handler = async (message, { conn, text }) => {
     for (let result of selectedResults) {
       imageMessages.push({
         'body': proto.Message.InteractiveMessage.Body.fromObject({
-          'text': "*`Video`* -" + (" " + count++) 
+          'text': `*Publicado:* ${result.timeAgo}\n*Link:* ${result.link}`
         }),
         'footer': proto.Message.InteractiveMessage.Footer.fromObject({
-          'text': "author"
+          'text': "*Video* -" + (" " + count++)
         }),
         'header': proto.Message.InteractiveMessage.Header.fromObject({
           'title': result.title, 
@@ -50,13 +52,40 @@ let handler = async (message, { conn, text }) => {
           'imageMessage': await createImageMessage(result.img) 
         }),
         'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
-          'buttons': [{
-            'name': "quick_reply",
-            'buttonParamsJson': JSON.stringify({
-              display_text: 'Ver en YouTube',
-              id: result.link
-            })
-          }]
+//-----------------------------------------------------
+        if (!m.isGroup) {
+          'buttons': [
+              {
+                'name': "quick_reply",
+                'buttonParamsJson': JSON.stringify({
+                display_text: '⬇️ Audio',
+                id: `.ytmp3 ${result.link}`
+                })
+              },
+              {
+                'name': "quick_reply",
+                'buttonParamsJson': JSON.stringify({
+                display_text: '⬇️ Video',
+                id: `.ytmp4 ${result.link}`
+                })
+              },
+              {
+                'name': "quick_reply",
+                'buttonParamsJson': JSON.stringify({
+                display_text: '⬇️ Audio (Documento)',
+                id: `.ytmp3doc ${result.link}`
+                })
+              },
+              {
+                'name': "quick_reply",
+                'buttonParamsJson': JSON.stringify({
+                display_text: '⬇️ Video (Documento)',
+                id: `.ytmp4doc ${result.link}`
+                })
+              }
+          ]
+        }
+//-----------------------------------------------------
         })
       });
     }
@@ -96,6 +125,6 @@ let handler = async (message, { conn, text }) => {
 
 handler.help = ["ytsearch"];
 handler.tags = ["search"];
-handler.command = ['yts8', 'ytsearch8'];
+handler.command = ['yts7', 'ytsearch7'];
 
 export default handler;
