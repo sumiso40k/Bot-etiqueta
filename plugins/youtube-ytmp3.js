@@ -30,7 +30,7 @@ txt += `	✩   *Titulo* : ${title}\n`
 txt += `	✩   *Calidad* : 128kbps\n`
 txt += `	✩   *Tamaño* : ${size}\n\n`
 txt += `> *- ↻ El audio se esta enviando espera un momento, soy lenta. . .*`
-await star.sendFile(m.chat, jpg, 'thumb.jpg', txt, m, null, rcanal)
+await star.sendFile(m.chat, jpg, 'thumb.jpg', txt, m, null)
 await star.sendMessage(m.chat, { audio: { url: mpeg }, fileName: title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })
 await m.react('✅')
 } catch {
