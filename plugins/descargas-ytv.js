@@ -1,4 +1,66 @@
 
+
+
+import fetch from 'node-fetch';
+
+const getYoutubeId = (url) => {
+  const regex = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
+  const matches = url.match(regex);
+  return matches ? matches[1] : null;
+};
+
+let handler = async (m, { text, conn, args, usedPrefix, command }) => {
+  if (!args[0]) return await conn.reply(m.chat, '_*[ ⚠️ ] Agrega un enlace de YouTube*_\n\n> Ejemplo:\n_.ytmp4 https://www.youtube.com_', m);
+
+  let youtubeLink = '';
+
+  if (args[0].includes('you')) {
+    youtubeLink = args[0];
+  } else {
+    return await conn.reply(m.chat, '_*[ ⚠️ ] El enlace no es de YouTube*_', m);
+  }
+
+  
+  const isShort = youtubeLink.includes('youtube.com/shorts/');
+  const videoId = getYoutubeId(youtubeLink);
+
+  
+  const shortYoutubeUrl = isShort ? youtubeLink : `https://youtu.be/${videoId}`;
+
+  conn.reply(m.chat, '_*[ ⏳ ] Descargando el video...*_', m);
+
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      let apiResponse = await fetch(`https://api.eypz.c0m.in/ytdl?url=${shortYoutubeUrl}`);
+      let apiData = await apiResponse.json().catch(() => {
+        console.log('La respuesta no es un JSON válido');
+      });
+
+      if (!apiData.status) throw new Error('Ocurrió un error en la API');
+
+      let downloadUrl = apiData.result.mp4;
+      let title = apiData.result.title || 'video';
+      let image = apiData.result.thumb;
+
+      await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${title}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣` }, { quoted: m });
+      
+      break;
+    } catch (err) {
+      console.log(`Intento ${attempt} fallido: ${err.message}`);
+      if (attempt === 2) {
+        await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
+      }
+    }
+  }
+};
+
+handler.command = ['ytmp4', 'ytv'];
+export default handler;
+
+
+
+
+/*
 import fetch from 'node-fetch';
 
 const getYoutubeId = (url) => {
@@ -54,7 +116,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
 
 handler.command = ['ytmp4', 'ytv'];
 export default handler;
-
+*/
 
 
 /*
