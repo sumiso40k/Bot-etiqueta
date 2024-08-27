@@ -7,7 +7,7 @@ import fetch from 'node-fetch'
 import sharp from 'sharp'
 
 let handler = async (m, { conn: star, args, text, isPrems, isOwner, usedPrefix, command }) => {
-if (!args || !args[0]) return star.reply(m.chat, '🚩 Ingresa el enlace del vídeo de YouTube junto al comando.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* https://music.youtube.com/watch?v=Z-EAVUGEqQw&si=FRirpjd2h8BZm0Sl`, m, rcanal)
+if (!args || !args[0]) return star.reply(m.chat, '🚩 Ingresa el enlace del vídeo de YouTube junto al comando.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* https://music.youtube.com/watch?v=Z-EAVUGEqQw&si=FRirpjd2h8BZm0Sl`, m)
 if (!args[0].match(/youtu/gi)) return star.reply(m.chat, `Verifica que el enlace sea de YouTube.`, m, rcanal).then(_ => m.react('✖️'))
 await m.react('🕓')
 try {
