@@ -53,7 +53,8 @@ let handler = async (message, { conn, text }) => {
         }),
         'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
 //-----------------------------------------------------
-        if (!m.isGroup) {
+        if (!message.isGroup) {
+
           'buttons': [
               {
                 'name': "quick_reply",
