@@ -38,9 +38,8 @@ await m.react('✖️')
 }}
 handler.help = ['ytmp3 *<link yt>*']
 handler.tags = ['downloader']
-handler.command = ['ytmp3', 'yta', 'fgmp3']
-handler.limit = 2
-handler.register = true 
+handler.command = ['ytmp3dl9', 'ytadl9']
+
 export default handler
 
 function formats(bytes, decimals = 2) {
