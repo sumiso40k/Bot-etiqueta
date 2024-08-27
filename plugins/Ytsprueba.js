@@ -6,7 +6,6 @@ const {
   proto
 } = (await import("@whiskeysockets/baileys"))["default"];
 
-
 let handler = async (message, { conn, text }) => {
   if (!text) {
     return message.reply("_*[ ⚠️ ] Ingresa lo que quieres buscar en YouTube*_");
@@ -39,6 +38,41 @@ let handler = async (message, { conn, text }) => {
     let count = 1;
 
     for (let result of selectedResults) {
+      let buttons = [];
+
+      if (!message.isGroup) { // Si no es un grupo, agregar botones
+        buttons = [
+          {
+            'name': "quick_reply",
+            'buttonParamsJson': JSON.stringify({
+              display_text: '⬇️ Audio',
+              id: `.ytmp3 ${result.link}`
+            })
+          },
+          {
+            'name': "quick_reply",
+            'buttonParamsJson': JSON.stringify({
+              display_text: '⬇️ Video',
+              id: `.ytmp4 ${result.link}`
+            })
+          },
+          {
+            'name': "quick_reply",
+            'buttonParamsJson': JSON.stringify({
+              display_text: '⬇️ Audio (Documento)',
+              id: `.ytmp3doc ${result.link}`
+            })
+          },
+          {
+            'name': "quick_reply",
+            'buttonParamsJson': JSON.stringify({
+              display_text: '⬇️ Video (Documento)',
+              id: `.ytmp4doc ${result.link}`
+            })
+          }
+        ];
+      }
+
       imageMessages.push({
         'body': proto.Message.InteractiveMessage.Body.fromObject({
           'text': `*Publicado:* ${result.timeAgo}\n*Link:* ${result.link}`
@@ -49,45 +83,10 @@ let handler = async (message, { conn, text }) => {
         'header': proto.Message.InteractiveMessage.Header.fromObject({
           'title': result.title, 
           'hasMediaAttachment': true,
-          'imageMessage': await createImageMessage(result.img) 
+          'imageMessage': await createImageMessage(result.img)
         }),
         'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
-//-----------------------------------------------------
-        if (message.isGroup) {
-
-        } else {
-          'buttons': [
-              {
-                'name': "quick_reply",
-                'buttonParamsJson': JSON.stringify({
-                display_text: '⬇️ Audio',
-                id: `.ytmp3 ${result.link}`
-                })
-              },
-              {
-                'name': "quick_reply",
-                'buttonParamsJson': JSON.stringify({
-                display_text: '⬇️ Video',
-                id: `.ytmp4 ${result.link}`
-                })
-              },
-              {
-                'name': "quick_reply",
-                'buttonParamsJson': JSON.stringify({
-                display_text: '⬇️ Audio (Documento)',
-                id: `.ytmp3doc ${result.link}`
-                })
-              },
-              {
-                'name': "quick_reply",
-                'buttonParamsJson': JSON.stringify({
-                display_text: '⬇️ Video (Documento)',
-                id: `.ytmp4doc ${result.link}`
-                })
-              }
-          ]
-        }
-//-----------------------------------------------------
+          'buttons': buttons // Añadimos los botones si es necesario
         })
       });
     }
