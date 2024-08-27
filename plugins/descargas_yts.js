@@ -144,7 +144,7 @@ let listSections = [];
                     header: "🎥 𝐕𝐈𝐃𝐄𝐎 (𝑫𝑶𝑪𝑼𝑴𝑬𝑵𝑻𝑶)",
                     title: "" ,
                     description: `${v.title}`, 
-                    id: `${usedPrefix}ytvdoc ${v.url}`
+                    id: `${usedPrefix}ytmp4doc ${v.url}`
                 }
             ]
         });
