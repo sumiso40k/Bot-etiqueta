@@ -237,7 +237,7 @@ export default handler;
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper-youtube'
 import fetch from 'node-fetch'
 import yts from 'yt-search'
-import ytdl from 'ytdl-core'
+//import ytdl from 'ytdl-core'
 import axios from 'axios'
 
 
@@ -264,12 +264,12 @@ try {
     
     await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${ttl}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch (E1) {
-    //console.log('Error 1 ' + E1)  
+    console.log('Error 1 ' + E1)  
 try {  
-    let mediaa = await ytMp4(youtubeLink)
-    await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `╭━❰  *YOUTUBE*  ❱━⬣\nVideo de YouTube\n╰━❰ *${wm}* ❱━⬣`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m })     
+   let mediaa = await ytMp4(youtubeLink)
+   await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `╭━❰  *YOUTUBE*  ❱━⬣\nVideo de YouTube\n╰━❰ *${wm}* ❱━⬣`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m })     
 } catch (E2) {  
-    //console.log('Error 2 ' + E2)   
+    console.log('Error 2 ' + E2)   
 try {
     let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${youtubeLink}`)    
     let lolh = await lolhuman.json()
@@ -279,7 +279,7 @@ try {
     let n4 = lolh.result.thumbnail
     await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${n}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(n4) }, { quoted: m })
 } catch (E3) {
-    //console.log('Error 3 ' + E3)   
+    console.log('Error 3 ' + E3)   
 }}}}
 
 handler.command = ['ytmp4', 'ytv']
