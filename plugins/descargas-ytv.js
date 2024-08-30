@@ -275,7 +275,7 @@ console.log(url)
   console.log(yt)
     const resolutions = Object.keys(yt.video) // List of resolution/quality
     console.log(resolutions) 
-    const dl_url = await yt.video[resolutions[0]].download()
+    const dl_url = await yt.video[resolutions[2]].download()
     console.log(dl_url)
     const ttl = await yt.title
     //const size = await yt.video[q].fileSizeH
