@@ -293,6 +293,7 @@ const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
 if (i === 0) resolve(`${bytes} ${sizes[i]}`);
 resolve(`${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`)})};
 
+/*
 async function ytMp3(url) {
 return new Promise((resolve, reject) => {
 ytdl.getInfo(url).then(async(getUrl) => {
@@ -326,7 +327,8 @@ let tinyUrl = tiny.data;
 let title = getUrl.videoDetails.title;
 let thumb = getUrl.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url;
 resolve({ title, result: tinyUrl, rersult2: resultFix[0].video, thumb })}).catch(reject)})};
-
+*/
+/*
 async function ytPlay(query) {
 return new Promise((resolve, reject) => {
 yts(query).then(async(getData) => {
@@ -346,4 +348,4 @@ for (let i = 0; i < result.length; i++) { url.push(result[i].url) }
 let random = url[0];
 let getVideo = await ytMp4(random);
 resolve(getVideo)}).catch(reject)})};
-
+*/
