@@ -61,8 +61,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }, { 'quoted': m });
 
     await conn.relayMessage(m.chat, responseMessage.message, { 'messageId': responseMessage.key.id });
-  } catch {
-    
+  } catch (e) {
+    console.log(e);
   }
 };
 
