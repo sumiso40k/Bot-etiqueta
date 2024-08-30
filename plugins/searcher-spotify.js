@@ -36,7 +36,6 @@ let handler = async (message, { conn, text }) => {
 
     shuffleArray(data.data);
     let selectedResults = data.data.splice(0, 10);
-    let count = 1;
 
     for (let result of selectedResults) {
       let buttons = [];
@@ -44,33 +43,29 @@ let handler = async (message, { conn, text }) => {
       if (!message.isGroup) { // Si no es un grupo, agregar botones
         buttons = [
           {
-            'name': "quick_reply",
-            'buttonParamsJson': JSON.stringify({
-              display_text: '⬇️ Audio',
-              id: `.dlspotify ${data.url}`
-            })
+            'buttonText': { 'displayText': '⬇️ Audio' },
+            'type': 1, // quick reply button type
+            'buttonId': `.dlspotify ${result.url}`
           },
           {
-            'name': "quick_reply",
-            'buttonParamsJson': JSON.stringify({
-              display_text: '⬇️ Audio (Documento)',
-              id: `.dlspotifydoc ${data.url}`
-            })
+            'buttonText': { 'displayText': '⬇️ Audio (Documento)' },
+            'type': 1,
+            'buttonId': `.dlspotifydoc ${result.url}`
           }
         ];
       }
 
       imageMessages.push({
         'body': proto.Message.InteractiveMessage.Body.fromObject({
-          'text': `*Artista:* ${data.artist}\n*Álbum:* ${data.album}\n*Duración:* ${data.duration}\n*Publicado:* ${data.publish}\n*Popularidad:* ${data.popularity}\n*Link:* ${data.url}`
+          'text': `*Artista:* ${result.artist}\n*Álbum:* ${result.album}\n*Duración:* ${result.duration}\n*Publicado:* ${result.publish}\n*Popularidad:* ${result.popularity}\n*Link:* ${result.url}`
         }),
         'footer': proto.Message.InteractiveMessage.Footer.fromObject({
           'text': ""
         }),
         'header': proto.Message.InteractiveMessage.Header.fromObject({
-          'title': data.title, 
+          'title': result.title, 
           'hasMediaAttachment': true,
-          'imageMessage': await createImageMessage(data.image)
+          'imageMessage': await createImageMessage(result.image)
         }),
         'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
           'buttons': buttons // Añadimos los botones si es necesario
