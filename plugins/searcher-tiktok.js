@@ -31,7 +31,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let { data } = await axios.get(`https://deliriusapi-official.vercel.app/search/tiktoksearch?query=${text}`);
     let videos = data.meta;
     shuffleArray(videos);
-    let topVideos = videos.splice(0, 8);
+    let topVideos = videos.splice(0, 6);
 
     for (let video of topVideos) {
       results.push({
