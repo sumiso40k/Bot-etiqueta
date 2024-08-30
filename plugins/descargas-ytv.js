@@ -266,8 +266,8 @@ try {
 } catch (E1) {
     console.log('Error 1 ' + E1)  
 try {  
-   let mediaa = await ytMp4(youtubeLink)
-   await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `╭━❰  *YOUTUBE*  ❱━⬣\nVideo de YouTube\n╰━❰ *${wm}* ❱━⬣`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m })     
+   //let mediaa = await ytMp4(youtubeLink)
+   //await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `╭━❰  *YOUTUBE*  ❱━⬣\nVideo de YouTube\n╰━❰ *${wm}* ❱━⬣`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m })     
 } catch (E2) {  
     console.log('Error 2 ' + E2)   
 try {
