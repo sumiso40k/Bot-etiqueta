@@ -271,7 +271,7 @@ console.log(url)
     let qu = args[1] || '360'
     let q = qu + 'p'
     let v = youtubeLink
-    const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+    const yt = await youtubedlv2(v).catch(async _ => await youtubedl(v))
   console.log(yt)
     const resolutions = Object.keys(yt.video) // List of resolution/quality
     console.log(resolutions) 
