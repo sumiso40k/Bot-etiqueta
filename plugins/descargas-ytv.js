@@ -278,7 +278,7 @@ console.log(url)
     const dl_url = await yt.video[resolutions[0]].download()
     console.log(dl_url)
     const ttl = await yt.title
-    const size = await yt.video[q].fileSizeH
+    //const size = await yt.video[q].fileSizeH
     
     await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${ttl}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch (E1) {
