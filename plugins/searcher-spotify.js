@@ -33,8 +33,8 @@ let handler = async (message, { conn, text }) => {
       return message.reply("_*[ ⚠️ ] No se encontraron resultados para la búsqueda*_");
     }
 
-    shuffleArray(data.results);
-    let selectedResults = data.results.splice(0, 10);
+    shuffleArray(data.data);
+    let selectedResults = data.data.splice(0, 10);
     let count = 1;
 
     for (let result of selectedResults) {
