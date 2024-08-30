@@ -29,7 +29,7 @@ let handler = async (message, { conn, text }) => {
     let imageMessages = [];
     let { data } = await axios.get(`https://deliriusapi-official.vercel.app/search/spotify?q=${encodeURIComponent(text)}&limit=20`);
 
-    if (!data.results) {
+    if (!data.data) {
       return message.reply("_*[ ⚠️ ] No se encontraron resultados para la búsqueda*_");
     }
 
