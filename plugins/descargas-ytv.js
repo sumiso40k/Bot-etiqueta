@@ -258,6 +258,7 @@ try {
     let q = qu + 'p'
     let v = youtubeLink
     const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+  console.log(yt)
     const dl_url = await yt.video[q].download()
     const ttl = await yt.title
     const size = await yt.video[q].fileSizeH
