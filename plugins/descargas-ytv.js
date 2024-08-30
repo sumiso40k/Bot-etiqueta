@@ -254,12 +254,29 @@ if (args[0].includes('you')) {
 
 conn.reply(m.chat, `_*[ ⏳ ] Descargando el video...*_`, m)
 try {
+
+/*
+const data = await youtubedl('https://youtu.be/iik25wqIuFo')
+console.log(data) // JSON
+const resolutions = Object.keys(data.video) // List of resolution/quality
+console.log(resolutions) 
+const url = await data.video[resolutions[0]].download() // Download '720p' video
+console.log(url)
+*/
+
+
+
+
+  
     let qu = args[1] || '360'
     let q = qu + 'p'
     let v = youtubeLink
     const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
   console.log(yt)
-    const dl_url = await yt.video[q].download()
+    const resolutions = Object.keys(yt.video) // List of resolution/quality
+    console.log(resolutions) 
+    const dl_url = await yt.video[resolutions[0]].download()
+    console.log(dl_url)
     const ttl = await yt.title
     const size = await yt.video[q].fileSizeH
     
