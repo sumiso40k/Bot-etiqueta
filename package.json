@@ -111,6 +111,7 @@
         "google-it": "^1.6.3",
         "ytdl-core": "github:HanSamu-27/ytdl-core#main",
         "ruhend-scraper": "^7.0.4",
+        "rahad-all-downloader": "^2.1.16",
         "node-html-parser": "^6.1.13"
     },
     "devDependencies": {
