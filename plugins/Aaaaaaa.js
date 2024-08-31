@@ -1,4 +1,5 @@
-import { alldl } from 'rahad-all-downloader';
+import pkg from 'rahad-all-downloader';
+const { alldl } = pkg;
 
 let handler = async (m, { conn, text }) => {
     const videoUrl = text.trim(); // Extrae la URL del mensaje
