@@ -1,4 +1,5 @@
-import { alldl } from 'rahad-all-downloader';
+import pkg from 'rahad-all-downloader';
+const { alldl } = pkg;
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text }) => {
