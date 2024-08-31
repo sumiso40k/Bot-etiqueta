@@ -1,6 +1,5 @@
 import pkg from 'rahad-all-downloader';
 const { alldl } = pkg;
-
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text }) => {
@@ -14,18 +13,11 @@ let handler = async (m, { conn, text }) => {
         // Verifica que haya datos en la respuesta
         if (result && result.data && result.data.videoUrl) {
             const downloadUrl = result.data.videoUrl;
-            const filename = result.data.title || 'video'; // Usa el título del video o 'video' como nombre del archivo
-            const thumb = result.data.thumbnail || ''; // Usa la miniatura si está disponible
-            const wm = 'TuMarca'; // Reemplaza con tu marca o personalización
-
+            const filename = result.data.title || 'video.mp4'; // Usa el título del video o 'video' como nombre del archivo
+ 
+            console.log(downloadUrl);
             // Envío del video
-            await conn.sendMessage(m.chat, {
-                video: { url: downloadUrl },
-                fileName: `${filename}.mp4`,
-                mimetype: 'video/mp4',
-                caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`,
-                thumbnail: thumb ? await fetch(thumb).then(res => res.buffer()) : null,
-            }, { quoted: m });
+            await conn.sendFile(m.chat, downloadUrl, `${filename}.mp4`, `Titulo: ${filename}`, m);
 
         } else {
             m.reply('No se encontraron enlaces de descarga.');
@@ -35,5 +27,5 @@ let handler = async (m, { conn, text }) => {
     }
 };
 
-handler.command = /^(descargar|download)$/i;
+handler.command = /^(descargar1|download1)$/i;
 export default handler;
