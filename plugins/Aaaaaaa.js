@@ -1,5 +1,6 @@
 import pkg from 'rahad-all-downloader';
 const { alldl } = pkg;
+
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text }) => {
@@ -10,11 +11,11 @@ let handler = async (m, { conn, text }) => {
     try {
         const result = await alldl(videoUrl);
 
-        // Verificamos que haya al menos un enlace de descarga disponible
-        if (result && result.length > 0) {
-            const downloadUrl = result[0].url; // Toma el primer enlace de descarga
-            const filename = result[0].title || 'video'; // Usa el título del video o 'video' como nombre del archivo
-            const thumb = result[0].thumbnail || ''; // Usa la miniatura si está disponible
+        // Verifica que haya datos en la respuesta
+        if (result && result.data && result.data.videoUrl) {
+            const downloadUrl = result.data.videoUrl;
+            const filename = result.data.title || 'video'; // Usa el título del video o 'video' como nombre del archivo
+            const thumb = result.data.thumbnail || ''; // Usa la miniatura si está disponible
             const wm = 'TuMarca'; // Reemplaza con tu marca o personalización
 
             // Envío del video
@@ -34,5 +35,5 @@ let handler = async (m, { conn, text }) => {
     }
 };
 
-handler.command = /^(descargar1|download1)$/i;
+handler.command = /^(descargar|download)$/i;
 export default handler;
