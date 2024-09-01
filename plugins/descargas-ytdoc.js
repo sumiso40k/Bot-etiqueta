@@ -23,7 +23,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
   const isShort = youtubeLink.includes('youtube.com/shorts/');
   const videoId = getYoutubeId(youtubeLink);
 
-  
+  const thumbnail = videoId;
   const shortYoutubeUrl = isShort ? youtubeLink : `https://youtu.be/${videoId}`;
 
 
