@@ -44,12 +44,12 @@ let handler = async (m, { conn, text }) => {
             
             let media = await response.buffer();
             
-            let audio = await toAudio(media, 'mp3');
+            let audio = await toAudio(media, 'mp4');
             
             
             await conn.sendFile(m.chat, audio.data, `${filename}.mpeg`, `Titulo: ${filename}`, m, null, { mimetype: 'audio/mpeg' });
         } else {
-            await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
+            await conn.reply(m.chat, `_[ ❗ ] Error al descargar el audio, vuelve a intentarlo_`, m);
         }
     } catch (error) {
         console.log(error)
