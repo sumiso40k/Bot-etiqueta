@@ -1,6 +1,6 @@
 import CobaltAPI from "cobalt-api";
 
-const cobalt = new CobaltAPI("https://www.youtube.com/watch?v=OAr6AIvH9VY");
+const cobalt = new CobaltAPI("https://youtube.com/watch?v=cyfxF0SDP28");
 
 let handler = async (m, { conn }) => {
     try {
