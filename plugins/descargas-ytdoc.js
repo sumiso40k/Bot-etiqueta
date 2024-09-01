@@ -1,4 +1,5 @@
-
+import pkg from 'rahad-all-downloader';
+const { alldl } = pkg;
 import fetch from 'node-fetch';
 
 const getYoutubeId = (url) => {
@@ -34,21 +35,15 @@ if (command==='ytmp4doc') {
     
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      let apiResponse = await fetch(`https://api.eypz.c0m.in/ytdl?url=${shortYoutubeUrl}`);
-      let apiData = await apiResponse.json().catch(() => {
-        console.log('La respuesta no es un JSON válido');
-      });
+      let result = await alldl(shortYoutubeUrl);
 
-      if (!apiData.status) throw new Error('Ocurrió un error en la API');
+      if (!result) throw new Error('Ocurrió un error en la API');
 
-      let downloadUrl = apiData.result.mp4;
-      let title = apiData.result.title || 'video';
-      let image = apiData.result.thumb;
+      let downloadUrl = result.data.videoUrl;
+      let title = result.data.title || 'video.mp4';
       let capt = `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`
       
-      
       await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: capt, mimetype: 'video/mp4', fileName: `${title}.mp4`}, {quoted: m});
-      
       
       break;
     } catch (err) {
