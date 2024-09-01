@@ -1,4 +1,70 @@
 
+
+
+import pkg from 'rahad-all-downloader';
+const { alldl } = pkg;
+import fetch from 'node-fetch';
+import { toAudio } from '../lib/converter.js';
+
+const getYoutubeId = (url) => {
+  const regex = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
+  const matches = url.match(regex);
+  return matches ? matches[1] : null;
+};
+
+let handler = async (m, { conn, text }) => {
+    
+    
+      if (!text) return await conn.reply(m.chat, '_*[ ⚠️ ] Agrega un enlace de YouTube*_\n\n> Ejemplo:\n_.ytmp3 https://www.youtube.com_', m);
+        
+        let youtubeLink = '';
+
+    if (text.includes('you')) {
+    youtubeLink = text;
+  } else {
+    return await conn.reply(m.chat, '_*[ ⚠️ ] El enlace no es de YouTube*_', m);
+  }
+  
+  const isShort = youtubeLink.includes('youtube.com/shorts/');
+  const videoId = getYoutubeId(youtubeLink);
+
+  
+  const shortYoutubeUrl = isShort ? youtubeLink : `https://youtu.be/${videoId}`;
+
+  conn.reply(m.chat, '_*[ ⏳ ] Descargando el audio...*_', m);
+  
+    try {
+        const result = await alldl(shortYoutubeUrl);
+
+        if (result && result.data && result.data.videoUrl) {
+            const downloadUrl = result.data.videoUrl;
+            const filename = result.data.title || 'audio.mp3';
+            
+            let response = await fetch(downloadUrl);
+            
+            let media = await response.buffer();
+            
+            let audio = await toAudio(media, 'mp3');
+            
+            
+            await conn.sendFile(m.chat, audio.data, `${filename}.mpeg`, `Titulo: ${filename}`, m, null, { mimetype: 'audio/mpeg' });
+        } else {
+            await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
+        }
+    } catch (error) {
+        console.log(error)
+        await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
+    }
+};
+
+handler.command = ['ytmp3', 'yta'];
+export default handler;
+
+
+
+
+
+/*
 import fetch from 'node-fetch';
 
 const getYoutubeId = (url) => {
@@ -54,7 +120,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
 
 handler.command = ['ytmp3', 'yta'];
 export default handler;
-
+*/
 
 
 
