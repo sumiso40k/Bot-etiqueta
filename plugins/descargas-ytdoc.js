@@ -23,7 +23,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
   const isShort = youtubeLink.includes('youtube.com/shorts/');
   const videoId = getYoutubeId(youtubeLink);
 
-  const thumbnail = videoId;
+  const thumbnail = `https://i.ytimg.com/vi/${videoId}/hq720.jpg`;
   const shortYoutubeUrl = isShort ? youtubeLink : `https://youtu.be/${videoId}`;
 
 
@@ -43,7 +43,7 @@ if (command==='ytmp4doc') {
       let title = result.data.title || 'video.mp4';
       let capt = `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`
       
-      await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: capt, mimetype: 'video/mp4', fileName: `${title}.mp4`}, {quoted: m});
+      await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: capt, mimetype: 'video/mp4', fileName: `${title}.mp4`, thumbnail: await fetch(thumbnail) }, {quoted: m});
       
       break;
     } catch (err) {
