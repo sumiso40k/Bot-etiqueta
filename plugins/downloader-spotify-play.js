@@ -57,5 +57,5 @@ console.log(`❌ El comando #play está fallando`)
 console.log(e)
 }}
 
-handler.command = ['play2']
+handler.command = ['play']
 export default handler;
