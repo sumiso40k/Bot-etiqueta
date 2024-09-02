@@ -31,7 +31,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     
     try {
     //╔────── ¤ ◎ node-yt-dl ◎ ¤ ──────╗
-        let result = await ytdl.mp4(shortYoutubeUrl);
+        let result = await ytdl.mp3(shortYoutubeUrl);
         let title = result.title;
         let thumb = result.metadata.thumbnail;
         let downloadUrl = result.media;
