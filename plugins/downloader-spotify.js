@@ -18,7 +18,7 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
                 const downloadUrl = data.data.url;
                 const filename = `${data.data.title || 'audio'}.mp3`;
                 const thumb = data.data.image;
-                await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, fileName: `${filename}.mp3`, mimetype: 'audio/mpeg', caption: `╭━❰  *SPOTIFY*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, quoted: m })
+                await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, fileName: filename, mimetype: 'audio/mpeg', caption: `╭━❰  *SPOTIFY*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, quoted: m })
                 //await conn.sendFile(m.chat, downloadUrl, filename, `Titulo: ${filename}`, m);
             } else {
                 throw new Error('_*[ ❌ ] Ocurrió un error al descargar el  archivo mp3_');
@@ -34,7 +34,7 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
                 const downloadUrl = data.data.url;
                 const filename = `${data.data.title || 'audio'}.mp3`;
                 const thumb = data.data.image;
-                await conn.sendMessage(m.chat, { document: { url: downloadUrl }, fileName: `${filename}.mp3`, mimetype: 'audio/mpeg', caption: `╭━❰  *SPOTIFY*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, quoted: m })
+                await conn.sendMessage(m.chat, { document: { url: downloadUrl }, fileName: filename, mimetype: 'audio/mpeg', caption: `╭━❰  *SPOTIFY*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, quoted: m })
                 //await conn.sendFile(m.chat, downloadUrl, filename, `Titulo: ${filename}`, m);
             } else {
                 throw new Error('_*[ ❌ ] Ocurrió un error al descargar el  archivo mp3_');
