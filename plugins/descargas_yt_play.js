@@ -34,7 +34,7 @@ await conn.reply(m.chat, `❌ _*El comando #play está fallando, repórtalo al c
 console.log(`❌ El comando #play está fallando`)
 console.log(e)
 }}
-handler.command = ['play']
+handler.command = ['play2']
 //handler.limit = 3
 //handler.register = true 
 export default handler;
