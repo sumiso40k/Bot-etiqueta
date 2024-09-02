@@ -113,6 +113,7 @@
         "ruhend-scraper": "^7.0.4",
         "rahad-all-downloader": "^2.1.16",
         "cobalt-api": "^1.0.0",
+        "node-yt-dl": "^2.2.2",
         "node-html-parser": "^6.1.13"
     },
     "devDependencies": {
