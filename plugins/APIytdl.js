@@ -6,7 +6,7 @@ let handler = async (m, { conn, text }) => {
         return m.reply('Por favor, proporciona la URL del video.');
     }
     try {
-        const result = await ytdl.mp3(videoUrl);
+        const result = await ytdl.mp4(videoUrl);
         const message = `Resultado:\n${JSON.stringify(result, null, 2)}`;
         m.reply(message);
     } catch (error) {
