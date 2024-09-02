@@ -37,6 +37,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
     //╚────── ¤ ◎ node-yt-dl ◎ ¤ ──────╝
     } catch (e) {
         await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
+        console.log(e);
     }
 };
 
