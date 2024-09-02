@@ -9,7 +9,7 @@ try {
     
     let { data } = await axios.get(`https://deliriusapi-official.vercel.app/search/spotify?q=${encodeURIComponent(text)}&limit=10`);
 
-    const image = data.data[0].image;
+    const img = data.data[0].image;
     const url = data.data[0].url;
     const info = `⧁ 𝙏𝙄𝙏𝙐𝙇𝙊
 » ${data.data[0].title}
@@ -31,7 +31,7 @@ try {
 
 _*🎶 Enviando música...*_`.trim()
 
-await conn.sendFile(m.chat, image, 'imagen.jpg', info, m);
+await conn.sendFile(m.chat, img, 'imagen.jpg', info, m);
 
 
 //＼／＼／＼／＼／＼／ DESCARGAR ＼／＼／＼／＼／＼／
