@@ -33,7 +33,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         let title = result.title;
         let thumb = result.metadata.thumbnail;
         let downloadUrl = result.media;
-        await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${title}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`}, thumbnail: await fetch(thumb), { quoted: m });
+        await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${title}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb) }, { quoted: m });
     //╚────── ¤ ◎ node-yt-dl ◎ ¤ ──────╝
     } catch (e) {
         await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
