@@ -27,7 +27,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     
     const shortYoutubeUrl = isShort ? youtubeLink : `https://youtu.be/${videoId}`;
     
-    conn.reply(m.chat, '_*[ ⏳ ] Descargando el video...*_', m);
+    conn.reply(m.chat, '_*[ ⏳ ] Descargando el audio...*_', m);
     
     try {
     //╔────── ¤ ◎ node-yt-dl ◎ ¤ ──────╗
@@ -38,7 +38,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, fileName: `${title}.mp3`, mimetype: 'audio/mp4', caption:`╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`}, { quoted: m });
     //╚────── ¤ ◎ node-yt-dl ◎ ¤ ──────╝
     } catch (e) {
-        await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
+        await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
         console.log(e);
     }
 };
