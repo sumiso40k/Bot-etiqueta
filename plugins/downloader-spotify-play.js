@@ -38,11 +38,11 @@ await conn.sendFile(m.chat, image, 'imagen.jpg', info, m);
 
     const apiUrl = `https://deliriusapi-official.vercel.app/download/spotifydl?url=${encodeURIComponent(url)}`;
     const response = await fetch(apiUrl);
-    const data = await response.json();
+    const result = await response.json();
     
-    if (data.data.url) {
-        const downloadUrl = data.data.url;
-        const filename = `${data.data.title || 'audio'}.mp3`;
+    if (result.data.url) {
+        const downloadUrl = result.data.url;
+        const filename = `${result.data.title || 'audio'}.mp3`;
         await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, fileName: filename, mimetype: 'audio/mpeg', caption: `╭━❰  *SPOTIFY*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, quoted: m })
     } else {
         throw new Error('_*[ ❌ ] Ocurrió un error al descargar el  archivo mp3_');
