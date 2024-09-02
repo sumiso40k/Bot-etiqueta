@@ -7,7 +7,7 @@ const getYoutubeId = (url) => {
     return matches ? matches[1] : null;
 };
 
-let handler = async (m, { text, conn, args, usedPrefix, command }) => {
+let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) return await conn.reply(m.chat, `_*[ ⚠️ ] Agrega un enlace de YouTube*_\n\n_Ejemplo:_\n.${command} https://www.youtube.com`, m);
     
     let youtubeLink = '';
