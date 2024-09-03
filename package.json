@@ -107,6 +107,8 @@
         "google-it": "^1.6.3",
         "node-yt-dl": "^2.2.2",
         "bimasky-dl": "^1.4.7",
+        "btch-downloader": "^2.3.2",
+        "ruhend-scraper": "^7.0.6",
         "node-html-parser": "^6.1.13"
     },
     "devDependencies": {
