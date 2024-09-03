@@ -34,7 +34,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
         let title = result.title;
         let thumb = result.metadata.thumbnail;
         let downloadUrl = result.media;
-        await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${title}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE 1*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`}, thumbnail: await fetch(thumb) }, { quoted: m });
+        await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${title}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE 1*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb) }, { quoted: m });
     //╚────── ¤ ◎ node-yt-dl ◎ ¤ ──────╝
     } catch (e1) {
         try {
@@ -43,7 +43,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
             let title2 = result2.title;
             let thumb2 = result2.thumbnail;
             let downloadUrl2 = result2.video;
-            await conn.sendMessage(m.chat, { video: { url: downloadUrl2 }, fileName: `${title2}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE 2*  ❱━⬣\n${title2}\n╰━❰ *${wm}* ❱━⬣`}, thumbnail: await fetch(thumb2) }, { quoted: m });
+            await conn.sendMessage(m.chat, { video: { url: downloadUrl2 }, fileName: `${title2}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE 2*  ❱━⬣\n${title2}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb2) }, { quoted: m });
         //╚────── ¤ ◎ ruhend-scraper ◎ ¤ ──────╝
         } catch (e2) {
             try {
@@ -53,7 +53,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
                 let title3 = result3.result.title || 'error';
                 let thumb3 = result3.result.thumbnail;
                 let downloadUrl3 = result3.result.link;
-                await conn.sendMessage(m.chat, { video: { url: downloadUrl3 }, fileName: `${title3}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE 3*  ❱━⬣\n${title3}\n╰━❰ *${wm}* ❱━⬣`}, thumbnail: await fetch(thumb3) }, { quoted: m });
+                await conn.sendMessage(m.chat, { video: { url: downloadUrl3 }, fileName: `${title3}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE 3*  ❱━⬣\n${title3}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb3) }, { quoted: m });
             //╚────── ¤ ◎ lol-human ◎ ¤ ──────╝
             } catch (e3) {
                 await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
