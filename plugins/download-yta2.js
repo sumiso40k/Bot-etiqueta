@@ -1,3 +1,75 @@
+
+
+import fetch from "node-fetch"; // Asegúrate de que este módulo esté instalado.
+
+const getYoutubeId = (url) => {
+    const regex = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
+    const matches = url.match(regex);
+    return matches ? matches[1] : null;
+};
+
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+    if (!args[0]) return await conn.reply(m.chat, `_*[ ⚠️ ] Agrega un enlace de YouTube*_\n\n_Ejemplo:_\n.${command} https://www.youtube.com`, m);
+    
+    let youtubeLink = '';
+    
+    if (args[0].includes('you')) {
+        youtubeLink = args[0];
+    } else {
+        return await conn.reply(m.chat, '_*[ ⚠️ ] El enlace no es de YouTube*_', m);
+    }
+    
+    const isShort = youtubeLink.includes('youtube.com/shorts/');
+    const videoId = getYoutubeId(youtubeLink);
+    
+    const shortYoutubeUrl = isShort ? youtubeLink : `https://youtu.be/${videoId}`;
+    
+    conn.reply(m.chat, '_*[ ⏳ ] Descargando el audio...*_', m);
+
+    try {
+        // Realiza la solicitud a la API de Cobalt
+        const response = await fetch('https://api.cobalt.tools/api/json', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                url: shortYoutubeUrl,
+                vCodec: 'h264',
+                vQuality: '720',
+                aFormat: 'mp3',
+                isAudioOnly: true
+            })
+        });
+        
+        const result = await response.json();
+
+        if (result.status !== 'success') {
+            throw new Error(result.text || 'Error en la descarga');
+        }
+
+        let downloadUrl = result.url;
+        let title = videoId; // Usamos el videoId como título en caso de que no se proporcione uno.
+        
+        await conn.sendMessage(m.chat, { 
+            audio: { url: downloadUrl }, 
+            fileName: `${title}.mp3`, 
+            mimetype: 'audio/mp4', 
+            caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`
+        }, { quoted: m });
+
+    } catch (e) {
+        await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
+        console.log(e);
+    }
+};
+
+handler.command = ['ytmp34', 'yta4'];
+export default handler;
+
+
+/*
 import CobaltAPI from 'cobalt-api'; // Asegúrate de haber instalado el paquete cobalt-api
 import fetch from 'node-fetch'; // Asegúrate de tener node-fetch para descargar el archivo
 
@@ -56,3 +128,4 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
 handler.command = ['ytmp34', 'yta4'];
 export default handler;
+*/
