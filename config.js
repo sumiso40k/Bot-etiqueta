@@ -11,7 +11,7 @@ import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 
 //---------[ Añada los numeros a ser Propietario/a ]---------
 
-global.owner = [['50375961083', 'ＰＲＯＰＩＥＴＡＲＩＯ', true]
+global.owner = [['50375961083', 'ＰＲＯＰＩＥＴＡＲＩＯ', true],
                ['584123989549', 'COLABORADOR', true]
                ]
 global.mods = [] 
