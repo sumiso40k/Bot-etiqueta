@@ -1,3 +1,4 @@
+
 import {generateWAMessageFromContent} from '@whiskeysockets/baileys';
 import { smsg } from './lib/simple.js'
 import { format } from 'util'
@@ -1099,7 +1100,7 @@ __filename
 console.error(e)
 for (let [jid] of global.owner.filter(([number, _, isDeveloper]) => isDeveloper && number)) {
 let data = (await conn.onWhatsApp(jid))[0] || {}
-//❌COMANDO FALLANDO 
+//❌COMANDO FALLAS
 if (data.exists) 
 delay(2 * 2000)
 m.reply(`_*[ ❌ ] Comando fallando*_`)
@@ -1257,11 +1258,12 @@ continue
 m.exp += xp
 if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
     m.reply('_*No tienes diamantes 💎*_\n\n_Usa el comando *.minardiamantes* para conseguir más_')
-
+//this.reply(m.chat, `${lenguajeGB['smsCont7']()} *${usedPrefix}buy*`, m)
 continue //Sin límite
 }
 if (plugin.level > _user.level) {
     m.reply('_*[ ⚠️ ] Tu nivel actual es muy bajo para usar este comando*_')
+//this.reply(m.chat, `${lenguajeGB['smsCont9']()} *${plugin.level}* ${lenguajeGB['smsCont10']()} *${_user.level}* ${lenguajeGB['smsCont11']()} *${usedPrefix}nivel*`, m)
 continue // Si no se ha alcanzado el nivel
 }
 let extra = {
@@ -1374,13 +1376,11 @@ let settingsREAD = global.db.data.settings[this.user.jid] || {}
 if (opts['autoread']) await this.readMessages([m.key])
 if (settingsREAD.autoread2) await this.readMessages([m.key])  
 //if (settingsREAD.autoread2 == 'true') await this.readMessages([m.key])    
-
-/*
+	    
 if (!m.fromMem && m.text.match(/(@5492266466080|LoliBot|Botsito|Gata|:v)/gi)) {
 let emot = pickRandom(["😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "🤩", "😏", "😳", "🥵", "🤯", "😱", "😨", "🤫", "🥴", "🤧", "🤑", "🤠", "🤖", "🤝", "💪", "👑", "😚", "🐱", "🐈", "🐆", "🐅", "⚡️", "🌈", "☃️", "⛄️", "🌝", "🌛", "🌜", "🍓", "🍎", "🎈", "🪄", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💘", "💝", "💟", "🌝", "😎", "🔥", "🖕", "🐦"])
 this.sendMessage(m.chat, { react: { text: emot, key: m.key }})}
 function pickRandom(list) { return list[Math.floor(Math.random() * list.length)]}}}
-*/
 
 /**
  * Handle groups participants update
@@ -1398,8 +1398,7 @@ let chat = global.db.data.chats[id] || {}
 let text = ''
 switch (action) {
 case 'add':
-
-//-------------------- on welcome
+    
 if (chat.welcome) {
 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
 for (let user of participants) {
@@ -1413,22 +1412,20 @@ const botTt2 = groupMetadata.participants.find(u => this.decodeJid(u.id) == this
 const isBotAdminNn = botTt2?.admin === "admin" || false
 text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || '*ᴜɴ ɢʀᴜᴘᴏ ɢᴇɴɪᴀ😸*\n *sɪɴ ʀᴇɢʟᴀ 😉*') :
 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-
 if (chat.antifake && isBotAdminNn && action === 'add') {
 const numerosPermitidos = ["212", "265", "92", "91", "90", "210", "60", "61", "62", "40", "48", "49", "93", "94", "98", "258"] //PUEDES EDITAR LOS USUARIOS QUE SE ELIMINARÁN SI EMPIEZA POR CUALQUIER DE ESOS NÚMEROS	
 if (numerosPermitidos.some(num => user.startsWith(num))) {	
-
-this.sendMessage(id, { text: `_*[ 🚫 ] Hey!*_ @${user.split("@")[0]} _*tu número está en la lista de números no permitidos, por lo tanto serás expulsado*_`, mentions: [user] }, { quoted: null });          
-
+this.sendMessage(id, { text: `*${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} @${user.split("@")[0]} ${lenguajeGB['smsInt2']()}*`, mentions: [user] }, { quoted: null });          
 let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
 if (responseb[0].status === "404") return      
 return    
-}}
-
+}}    
 let username = this.getName(id)
-let fkontak2 = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${user.split('@')[0]}:${user.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-
-
+let fkontak2 = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${user.split('@')[0]}:${user.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }      
+let vn = 'https://qu.ax/cUYg.mp3'
+let or = ['texto', 'audio'];
+let media = or[Math.floor(Math.random() * 2)]
+if (media === 'texto')
 this.sendMessage(id, { text: text, 
 contextInfo:{
 forwardingScore: 9999999,
@@ -1437,15 +1434,16 @@ mentionedJid:[user],
 "externalAdReply": {
 "showAdAttribution": true,
 "renderLargerThumbnail": true,
-"thumbnail": 'https://raw.githubusercontent.com/Rudyrex/Airi-Bot/main/src/img/icon.jpg', 
-"title": wm,
+"thumbnail": apii.data, 
+"title": [wm, ' ' + wm + '😊', '🌟'].getRandom(),
 "containsAutoReply": true,
 "mediaType": 1, 
 sourceUrl: [md, nna, yt, nnn, nn, tiktok].getRandom()}}}, { quoted: fkontak2 }) 
-
-//------------------------------------------------
-
-
+if (media === 'audio')
+this.sendMessage(id, { audio: { url: vn }, contextInfo:{ mentionedJid:[user], "externalAdReply": { "thumbnail": apii.data, "title": `乂 ＷＥＬＣＯＭＥ 乂`, "body": [wm, ' ' + wm + '😊', '🌟'].getRandom(), "previewType": "PHOTO", "thumbnailUrl": null, "showAdAttribution": true,  sourceUrl: [md, nna, yt, nn, tiktok].getRandom()}},  ptt: true, mimetype: 'audio/mpeg', fileName: `error.mp3` }, { quoted: fkontak2 })
+//this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }, { quoted: fkontak2 })
+}}}
+			    
 break
 case 'promote':
 case 'daradmin':
@@ -1511,11 +1509,10 @@ this.copyNForward(msg.chat, msg).catch(e => console.log(e, msg))
 console.error(e)
 }}
 
-
 global.dfail = (type, m, conn) => {
 let msg = {
-rowner: '_*[ ⚠️ ] Este comando solo puede ser usado por los propietarios del bot*_',
-owner: '_*[ ⚠️ ] Este comando solo puede ser usado por los propietarios del bot*_',
+rowner: lenguajeGB['smsRowner'](),
+owner: lenguajeGB['smsOwner'](),
 mods: lenguajeGB['smsMods'](),
 premium: lenguajeGB['smsPremium'](),
 group: lenguajeGB['smsGroup'](),
@@ -1530,7 +1527,6 @@ let tg = { quoted: m, userJid: conn.user.jid }
 let prep = generateWAMessageFromContent(m.chat, { extendedTextMessage: { text: msg, contextInfo: { externalAdReply: { title: lenguajeGB.smsAvisoAG().slice(0,-2), body: [wm, ' ' + wm + ' 😊', '🌟'].getRandom(), thumbnail: img.getRandom(), sourceUrl: [md, nna, yt, nn, tiktok].getRandom() }}}}, tg)
 if (msg) return conn.relayMessage(m.chat, prep.message, { messageId: prep.key.id })
 }
-
 
 const file = global.__filename(import.meta.url, true);
 watchFile(file, async () => {
