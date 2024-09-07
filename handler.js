@@ -1434,7 +1434,7 @@ mentionedJid:[user],
 "externalAdReply": {
 "showAdAttribution": true,
 "renderLargerThumbnail": true,
-"thumbnail": apii.data, 
+"thumbnail": 'https://raw.githubusercontent.com/Rudyrex/Airi-Bot/main/src/img/icon.jpg', 
 "title": [wm, ' ' + wm + '😊', '🌟'].getRandom(),
 "containsAutoReply": true,
 "mediaType": 1, 
