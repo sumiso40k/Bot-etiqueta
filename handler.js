@@ -1402,7 +1402,7 @@ case 'add':
 if (chat.welcome) {
 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
 for (let user of participants) {
-let pp = './src/img/default_avatar.jpg'
+let pp = 'https://raw.githubusercontent.com/Rudyrex/Airi-Bot/main/src/img/icon.jpg'
 try {
 pp = await this.profilePictureUrl(user, 'image')
 } catch (e) {
@@ -1434,7 +1434,7 @@ mentionedJid:[user],
 "externalAdReply": {
 "showAdAttribution": true,
 "renderLargerThumbnail": true,
-"thumbnail": 'https://raw.githubusercontent.com/Rudyrex/Airi-Bot/main/src/img/icon.jpg', 
+"thumbnail": apii.data, 
 "title": [wm, ' ' + wm + '😊', '🌟'].getRandom(),
 "containsAutoReply": true,
 "mediaType": 1, 
