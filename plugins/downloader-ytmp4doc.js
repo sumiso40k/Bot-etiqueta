@@ -43,7 +43,7 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
             let title2 = result2.title;
             let thumb2 = result2.thumbnail;
             let downloadUrl2 = result2.video;
-            await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`, mimetype: 'video/mp4', fileName: `${title}.mp4`}, {quoted: m});
+            await conn.sendMessage(m.chat, {document: {url: downloadUrl2}, caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${title2}\n╰━❰ *${wm}* ❱━⬣`, mimetype: 'video/mp4', fileName: `${title2}.mp4`}, {quoted: m});
         //╚────── ¤ ◎ ruhend-scraper ◎ ¤ ──────╝
         } catch (e2) {
             try {
@@ -53,10 +53,11 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
                 let title3 = result3.result.title || 'error';
                 let thumb3 = result3.result.thumbnail;
                 let downloadUrl3 = result3.result.link;
-                await conn.sendMessage(m.chat, {document: {url: downloadUrl}, caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`, mimetype: 'video/mp4', fileName: `${title}.mp4`}, {quoted: m});
+                await conn.sendMessage(m.chat, {document: {url: downloadUrl3}, caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${title3}\n╰━❰ *${wm}* ❱━⬣`, mimetype: 'video/mp4', fileName: `${title3}.mp4`}, {quoted: m});
             //╚────── ¤ ◎ lol-human ◎ ¤ ──────╝
             } catch (e3) {
                 await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
+                console.log(e3);
             }
         }
     }
