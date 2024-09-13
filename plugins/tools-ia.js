@@ -1,20 +1,30 @@
 import fetch from 'node-fetch';
+import axios from 'axios';
 
-const handler = async (m, { conn, text }) => {
-if (!text) return conn.reply(m.chat, 'Escribe un texto para hablar con chatgpt', m);
 
-try {
-//let msg = await conn.sendMessage(m.chat, {text: '*chatgpt esta escribiendo.....*'});
+const handler = async (m, {conn, text, usedPrefix, command}) => {
 
-let userid = conn.getName(m.sender) || 'default';
-let apiurl = `https://api.guruapi.tech/ai/gpt4?username=${userid}&query=hii${encodeURIComponent(text)}`;
-let result = await fetch(apiurl);
-let response = await result.json();
-  let mesg = response.msg;
-
-await conn.reply(m.chat, mesg, m);
-} catch {}}
-
-handler.command = handler.help = ["chatgpt"];
-
-export default handler
+    if (!text) {
+        return conn.reply(m.chat, `_*[ ⚠️ ] Escribe lo que quieras a ChatGPT*_\n\n> Ejemplo:\n_.${command} Recomienda un top 10 de películas de acción_`, m)
+    }
+    
+    try {
+        //let gpt = await fetch(`https://delirius-api-oficial.vercel.app/api/chatgpt?q=${text}`)
+        
+        let ia = await fetch(`https://api.guruapi.tech/ai/gpt4?username=default&query${text}`);
+        let res = await ia.json();
+        await m.reply(res.msg);
+    } catch {
+        /*
+        try {
+            let gpt = await fetch(`https://delirius-api-oficial.vercel.app/api/ia2?text=${text}`)
+            let res = await gpt.json()
+            await m.reply(res.gpt)
+        } catch {
+            
+        }
+        */
+    }
+};
+handler.command = ['ia']
+export default handler;
