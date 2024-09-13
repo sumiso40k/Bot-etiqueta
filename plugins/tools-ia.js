@@ -11,7 +11,7 @@ const handler = async (m, {conn, text, usedPrefix, command}) => {
     try {
         //let gpt = await fetch(`https://delirius-api-oficial.vercel.app/api/chatgpt?q=${text}`)
         
-        let ia = await fetch(`https://api.guruapi.tech/ai/gpt4?username=default&query${text}`);
+        let ia = await fetch(`https://api.guruapi.tech/ai/gpt4?username=default&query=${encodeURIComponent(text)}`);
         let res = await ia.json();
         await m.reply(res.msg);
     } catch {
