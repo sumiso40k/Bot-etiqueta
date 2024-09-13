@@ -12,7 +12,7 @@ let result = await fetch(apiurl);
 let response = await result.json();
   let mesg = response.msg;
 
-await conn.reply(m.chat, mesg);
+await conn.reply(m.chat, mesg, m);
 } catch {}}
 
 handler.command = handler.help = ["chatgpt"];
