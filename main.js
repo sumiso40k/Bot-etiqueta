@@ -9,7 +9,8 @@ import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, wa
 import yargs from 'yargs'
 import { spawn } from 'child_process'
 import lodash from 'lodash'
-import chalk from 'chalk'
+import chalk, {Chalk} from 'chalk'
+//import chalk from 'chalk'
 import fs from 'fs'
 import { watchFile, unwatchFile } from 'fs'  
 import syntaxerror from 'syntax-error'
@@ -27,7 +28,7 @@ import readline from 'readline'
 import NodeCache from 'node-cache'
 
 
-//const customChalk = new Chalk({ level: 3 });
+const customChalk = new Chalk({ level: 3 });
 const { proto} = (await import('@whiskeysockets/baileys')).default;
 const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, jidNormalizedUser, PHONENUMBER_MCC } = await import('@whiskeysockets/baileys')
 
