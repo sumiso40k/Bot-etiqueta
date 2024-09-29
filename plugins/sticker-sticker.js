@@ -4,7 +4,21 @@ import uploadImage from '../lib/uploadImage.js'
 import { webp2png } from '../lib/webp2mp4.js'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-
+let banner = `contextInfo: {
+  forwardingScore: 9999999,
+  isForwarded: true,
+  mentionedJid: [user],
+  "externalAdReply": {
+    showAdAttribution: true,
+    renderLargerThumbnail: true,
+    thumbnailUrl: "https://raw.githubusercontent.com/Rudyrex/Airi-Bot/refs/heads/main/src/img/banner1.jpg",
+    title: "¡Oferta Especial!",
+    body: "Haz clic aquí para más información",
+    mediaType: 1, // Imagen
+    sourceUrl: "https://example.com",
+    mediaUrl: "https://raw.githubusercontent.com/Rudyrex/Airi-Bot/refs/heads/main/src/img/banner1.jpg"
+  }
+}`
 let stiker = false
 try {
 let q = m.quoted ? m.quoted : m
@@ -13,7 +27,7 @@ if (/webp|image|video/g.test(mime)) {
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 8) return m.reply(`_*[ ⚠️ ] El video no debe durar mas de 7 segundos*_`)
 let img = await q.download?.()
 
-if (!img) return conn.reply(m.chat, `_*[ ❌ ] Úsalo en una imagen, gif o video*_`, m)
+if (!img) return conn.reply(m.chat, `_*[ ❌ ] Úsalo en una imagen, gif o video*_`, banner, m)
 
 let out
 try {
