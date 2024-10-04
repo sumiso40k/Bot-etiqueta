@@ -8,8 +8,8 @@ let chat = global.db.data.chats[m.chat]
 if (m.mentionedJid.includes(this.user.jid) && m.isGroup && !chat.isBanned) {
 
 let gpt = await fetch(`https://api.dorratz.com/ai/gpt4?username=user&query=${text}`)
-let res = await msg.json()
-await m.reply(res.data)
+let res = await gpt.json()
+await m.reply(res.msg)
 
 }
 
