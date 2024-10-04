@@ -1,4 +1,6 @@
 import { sticker } from '../lib/sticker.js'
+import { ctx1 } from '../exports.js';
+
 let MessageType = (await import(global.baileys)).default
 import fetch from 'node-fetch'
 import fs from "fs"
