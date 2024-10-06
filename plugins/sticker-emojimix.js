@@ -5,7 +5,7 @@ let MessageType = (await import(global.baileys)).default
 import fetch from 'node-fetch'
 import fs from "fs"
 
-let contextInf = 'contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: '', title: '✿ 𝐀𝐢𝐫𝐢 ✿', body: '𝙴𝚕 𝚖𝚎𝚓𝚘𝚛 𝚋𝚘𝚝 𝚍𝚎 𝚆𝚑𝚊𝚝𝚜𝙰𝚙𝚙 ✅', previewType: 0, thumbnail: imagen1, sourceUrl: 'https://github.com/Rudyrex/Airi-Bot'}}';
+let contextInf = 'contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: '', title: '✿ 𝐀𝐢𝐫𝐢 ✿', body: '𝙴𝚕 𝚖𝚎𝚓𝚘𝚛 𝚋𝚘𝚝 𝚍𝚎 𝚆𝚑𝚊𝚝𝚜𝙰𝚙𝚙 ✅', previewType: 0, thumbnail: imagen1, sourceUrl: 'https://github.com/Rudyrex/Airi-Bot'}}'
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   console.log(context1);
