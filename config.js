@@ -115,25 +115,6 @@ global.vid1 = 'https://qu.ax/dcAc.mp4'
 global.img = [imagen, imagen1, imagen2, imagen3, imagen4]
 
 
-global.icon1 = fs.readFileSync('./src/img/icon1.jpg')
-global.icon2 = fs.readFileSync('./src/img/icon2.jpg')
-global.icon3 = fs.readFileSync('./src/img/icon3.jpg')
-global.icon4 = fs.readFileSync('./src/img/icon4.jpg')
-global.icon5 = fs.readFileSync('./src/img/icon5.jpg')
-
-global.thumbnail1 = fs.readFileSync('./src/img/thumbnail1.jpg')
-global.thumbnail2 = fs.readFileSync('./src/img/thumbnail2.jpg')
-global.thumbnail3 = fs.readFileSync('./src/img/thumbnail3.jpg')
-global.thumbnail4 = fs.readFileSync('./src/img/thumbnail4.jpg')
-global.thumbnail5 = fs.readFileSync('./src/img/thumbnail5.jpg')
-
-global.icons = [icon1, icon2, icon3, icon4, icon5]
-global.thumbnails = [thumbnail1, thumbnail2, thumbnail3, thumbnail4, thumbnail5]
-
-global.ctx1 = 'contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: 'desc', title: '✿ 𝐀𝐢𝐫𝐢 ✿', body: '𝙴𝚕 𝚖𝚎𝚓𝚘𝚛 𝚋𝚘𝚝 𝚍𝚎 𝚆𝚑𝚊𝚝𝚜𝙰𝚙𝚙 ✅', previewType: 0, "renderLargerThumbnail": true, thumbnail: icons.getRandom(), sourceUrl: 'https://github.com/Rudyrex/Airi-Bot'}}'
-
-global.ctx2 = 'contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: 'desc', title: '✿ 𝐀𝐢𝐫𝐢 ✿', body: '𝙴𝚕 𝚖𝚎𝚓𝚘𝚛 𝚋𝚘𝚝 𝚍𝚎 𝚆𝚑𝚊𝚝𝚜𝙰𝚙𝚙 ✅', previewType: 0, "renderLargerThumbnail": true, thumbnail: thumbnails.getRandom(), sourceUrl: 'https://github.com/Rudyrex/Airi-Bot'}}'
-
 
 //------------------------[ Info | Datos ]---------------------------
 
