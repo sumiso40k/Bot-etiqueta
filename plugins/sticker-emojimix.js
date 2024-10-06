@@ -1,11 +1,11 @@
 import { sticker } from '../lib/sticker.js'
-import { ctx1 } from '../exports.js';
+import { context1 } from '../exports.js';
 
 let MessageType = (await import(global.baileys)).default
 import fetch from 'node-fetch'
 import fs from "fs"
 
-let contextInf = ctx1;
+let contextInf = context1;
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 if (!args[0]) return conn.reply(m.chat, `⚠️ 𝘿𝙚𝙗𝙚𝙨 𝙙𝙚 𝙪𝙨𝙖𝙧 2 𝙚𝙢𝙤𝙟𝙞𝙨 𝙮 𝙚𝙣 𝙢𝙚𝙙𝙞𝙤 𝙪𝙨𝙖𝙧 𝙚𝙡 *+*\n• 𝙀𝙟𝙚𝙢𝙥𝙡𝙤 :\n*${usedPrefix + command}* 😺+😆`, m, contextInf)
