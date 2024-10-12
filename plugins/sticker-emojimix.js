@@ -17,7 +17,7 @@ let [emoji1, emoji2] = text.split`+`
 let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 for (let res of anu.results) {
 let stiker = await sticker(false, res.url, global.packname, global.author)
-conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, contextInfo1, { quoted: m })
+conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, contextInfo1.contextInfo, { quoted: m })
 }} catch (e) {
 await conn.reply(m.chat, `${lenguajeGB['smsMalError3']()}#report ${lenguajeGB['smsMensError2']()} ${usedPrefix + command}\n\n${wm}`, fkontak, m)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
