@@ -8,7 +8,7 @@ const handler = async (m, {conn, args, command, usedPrefix}) => {
     
     await conn.reply(m.chat, '_*[ ⏳ ] Descargando...*_', m);
     try {
-        const responseIg = await axios.get(`https://deliriusapi-official.vercel.app/download/instagram?url=${args[0]}`);
+        const responseIg = await axios.get(`https://deliriussapi-oficial.vercel.app/download/instagram?url=${args[0]}`);
         const resultlIg = responseIg.data;
 
         for (const item of resultlIg.data) {
