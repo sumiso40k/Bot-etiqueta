@@ -64,7 +64,8 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
                     })
                 //╚────── ¤ ◎ bimasky-dl ◎ ¤ ──────╝
                 } catch (e4) {
-                    await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
+                    await conn.reply(m.chat, e4.message, m);
+                    //await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
                 }
             }
         }
