@@ -72,5 +72,5 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
     }
 };
 
-handler.command = ['ytmp4', 'ytv'];
+handler.command = ['ytmp4', 'ytv8'];
 export default handler;
