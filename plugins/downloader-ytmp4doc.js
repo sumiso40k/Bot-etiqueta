@@ -48,11 +48,11 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
         } catch (e2) {
             try {
             //╔────── ¤ ◎ lol-human ◎ ¤ ──────╗
-                let data = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${shortYoutubeUrl}`)    
+                let data = await fetch(`https://deliriussapi-oficial.vercel.app/download/ytmp4?url=${shortYoutubeUrl}`)    
                 let result3 = await data.json()
-                let title3 = result3.result.title || 'error';
-                let thumb3 = result3.result.thumbnail;
-                let downloadUrl3 = result3.result.link;
+                let title3 = result3.data.title || 'error';
+                let thumb3 = result3.data.image;
+                let downloadUrl3 = result3.data.download.url;
                 await conn.sendMessage(m.chat, {document: {url: downloadUrl3}, caption: `╭━❰  *YOUTUBE*  ❱━⬣\n${title3}\n╰━❰ *${wm}* ❱━⬣`, mimetype: 'video/mp4', fileName: `${title3}.mp4`}, {quoted: m});
             //╚────── ¤ ◎ lol-human ◎ ¤ ──────╝
             } catch (e3) {
