@@ -1,5 +1,4 @@
 import ytdl from "node-yt-dl";
-import down from "bima-sky";
 import { ytmp4 } from 'ruhend-scraper';
 import fetch from 'node-fetch';
 
@@ -49,28 +48,19 @@ let handler = async (m, { text, conn, args, usedPrefix, command }) => {
         } catch (e2) {
             try {
             //╔────── ¤ ◎ lol-human ◎ ¤ ──────╗
-                let data = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${shortYoutubeUrl}`)    
+                let data = await fetch(`https://deliriussapi-oficial.vercel.app/download/ytmp4?url=${shortYoutubeUrl}`)    
                 let result3 = await data.json()
-                let title3 = result3.result.title || 'error';
-                let thumb3 = result3.result.thumbnail;
-                let downloadUrl3 = result3.result.link;
+                let title3 = result3.data.title || 'error';
+                let thumb3 = result3.data.image;
+                let downloadUrl3 = result3.data.download.url;
                 await conn.sendMessage(m.chat, { video: { url: downloadUrl3 }, fileName: `${title3}.mp4`, mimetype: 'video/mp4', caption:`╭━❰  *YOUTUBE 3*  ❱━⬣\n${title3}\n╰━❰ *${wm}* ❱━⬣`, thumbnail: await fetch(thumb3) }, { quoted: m });
             //╚────── ¤ ◎ lol-human ◎ ¤ ──────╝
             } catch (e3) {
-                try {
-                //╔────── ¤ ◎ bimasky-dl ◎ ¤ ──────╗
-                    await down.youtubedl(link).then(result () => {
-                        await conn.reply(m.chat, result.message);
-                    })
-                //╚────── ¤ ◎ bimasky-dl ◎ ¤ ──────╝
-                } catch (e4) {
-                    console.log(e4);
-                    //await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
-                }
+                await conn.reply(m.chat, `_[ ❌ ] Error al descargar el video, vuelve a intentarlo_`, m);
             }
         }
     }
 };
 
-handler.command = ['ytmp4', 'ytv8'];
+handler.command = ['ytmp4', 'ytv'];
 export default handler;
