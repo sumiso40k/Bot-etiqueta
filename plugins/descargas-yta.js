@@ -2,6 +2,7 @@
 
 
 import ytdl from "node-yt-dl";
+import fetch from 'node-fetch';
 
 const getYoutubeId = (url) => {
     const regex = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
@@ -39,8 +40,18 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, fileName: `${title}.mp3`, mimetype: 'audio/mp4', caption:`╭━❰  *YOUTUBE*  ❱━⬣\n${title}\n╰━❰ *${wm}* ❱━⬣`}, { quoted: m });
     //╚────── ¤ ◎ node-yt-dl ◎ ¤ ──────╝
     } catch (e) {
-        await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
-        console.log(e);
+        try {
+             let data = await fetch(`https://deliriussapi-oficial.vercel.app/download/ytmp3?url=${shortYoutubeUrl}`)    
+             let result3 = await data.json()
+             let title3 = result3.data.title || 'error';
+             let thumb3 = result3.data.image;
+             let downloadUrl3 = result3.data.download.url;
+
+             await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
+        } catch (e2){
+            await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
+            console.log(e);
+        }
     }
 };
 
