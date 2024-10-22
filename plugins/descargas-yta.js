@@ -47,7 +47,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
              let thumb3 = result3.data.image;
              let downloadUrl3 = result3.data.download.url;
 
-             await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
+             await conn.sendMessage(m.chat, { audio: { url: downloadUrl3 }, fileName: `${title3}.mp3`, mimetype: 'audio/fmpg' }, { quoted: m }) 
         } catch (e2){
             await conn.reply(m.chat, `_[ ❌ ] Error al descargar el audio, vuelve a intentarlo_`, m);
             console.log(e);
