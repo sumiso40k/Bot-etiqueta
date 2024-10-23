@@ -82,7 +82,7 @@ global.author = 'Airi-Bot'
 
 //------------[ Versión | Nombre | cuentas ]------------
 
-global.wm = '🄰🄸🅁🄸-🄱🄾🅃'
+global.wm = '𝗠𝗜𝗖𝗞𝗘𝗬 𝗕𝗢𝗧'
 global.vs = '1.0.0'
 global.yt = ''
 global.tiktok = 'https://www.tiktok.com/@slsked?_t=8nmdMvLOnBe&_r=1'
